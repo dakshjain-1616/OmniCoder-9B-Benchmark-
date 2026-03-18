@@ -1,0 +1,1607 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OmniCoder-9B vs Competitors: Coding LLM Benchmark</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+    body { font-family: 'Inter', sans-serif; }
+    code, pre, .font-mono { font-family: 'JetBrains Mono', monospace; }
+    .chart-card { transition: box-shadow 0.2s ease; }
+    .chart-card:hover { box-shadow: 0 8px 30px rgba(0,0,0,0.08); }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen">
+
+<!-- ── Top nav bar ── -->
+<header class="bg-white border-b border-slate-200 sticky top-0 z-50 shadow-sm">
+  <div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <span class="text-2xl">🤖</span>
+      <span class="font-semibold text-slate-800 text-lg">LLM Coding Benchmark</span>
+    </div>
+    <span class="text-xs text-slate-400">2026-03-18 10:51 UTC</span>
+  </div>
+</header>
+
+<main class="max-w-7xl mx-auto px-6 py-10 space-y-12">
+
+  <!-- ── Hero ── -->
+  <section>
+    <h1 class="text-3xl font-bold text-slate-900 tracking-tight">OmniCoder-9B vs Competitors: Coding LLM Benchmark</h1>
+    <p class="mt-2 text-slate-500 text-sm">
+      5 models &nbsp;·&nbsp; 10 tasks &nbsp;·&nbsp; 50 total evaluations
+    </p>
+  </section>
+
+  <!-- ── KPI cards ── -->
+  <section>
+    <h2 class="text-xl font-semibold text-slate-700 mb-4">Executive Summary</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-5">
+        <p class="text-xs font-medium text-slate-400 uppercase tracking-wider">Models Evaluated</p>
+        <p class="mt-2 text-4xl font-bold text-slate-800">5</p>
+      </div>
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-5">
+        <p class="text-xs font-medium text-slate-400 uppercase tracking-wider">OmniCoder Avg Score</p>
+        <p class="mt-2 text-4xl font-bold text-orange-500">75.0</p>
+      </div>
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-5">
+        <p class="text-xs font-medium text-slate-400 uppercase tracking-wider">OmniCoder Pass@1</p>
+        <p class="mt-2 text-4xl font-bold text-orange-500">70.0%</p>
+      </div>
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-5">
+        <p class="text-xs font-medium text-slate-400 uppercase tracking-wider">Overall Syntax Valid</p>
+        <p class="mt-2 text-4xl font-bold text-blue-500">80.0%</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Summary table ── -->
+  <section>
+    <h2 class="text-xl font-semibold text-slate-700 mb-4">Model Performance Summary</h2>
+    <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+      <table class="w-full text-sm">
+        <thead class="bg-slate-800 text-white">
+          <tr>
+            <th class="px-4 py-3 text-left font-medium">Model</th>
+            <th class="px-4 py-3 text-center font-medium">Avg Score</th>
+            <th class="px-4 py-3 text-center font-medium">Avg Latency (ms)</th>
+            <th class="px-4 py-3 text-center font-medium">Avg TPS</th>
+            <th class="px-4 py-3 text-center font-medium">Syntax Valid</th>
+            <th class="px-4 py-3 text-center font-medium">Pass@1</th>
+            <th class="px-4 py-3 text-center font-medium">Tasks</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+        <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors ring-2 ring-orange-400">
+          <td class="px-4 py-3 font-semibold">OmniCoder-9B<span class="ml-2 text-xs bg-orange-100 text-orange-700 px-2 py-0.5 rounded-full">primary</span></td>
+          <td class="px-4 py-3 text-center font-mono">75.0</td>
+          <td class="px-4 py-3 text-center font-mono">28842</td>
+          <td class="px-4 py-3 text-center font-mono">65.4</td>
+          <td class="px-4 py-3 text-center font-mono">100.0%</td>
+          <td class="px-4 py-3 text-center font-mono">70.0%</td>
+          <td class="px-4 py-3 text-center font-mono">10</td>
+        </tr>
+        <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors ">
+          <td class="px-4 py-3 ">DeepSeek-Coder-V2-16B</td>
+          <td class="px-4 py-3 text-center font-mono">0.0</td>
+          <td class="px-4 py-3 text-center font-mono">0</td>
+          <td class="px-4 py-3 text-center font-mono">0.0</td>
+          <td class="px-4 py-3 text-center font-mono">0.0%</td>
+          <td class="px-4 py-3 text-center font-mono">0.0%</td>
+          <td class="px-4 py-3 text-center font-mono">10</td>
+        </tr>
+        <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors ">
+          <td class="px-4 py-3 ">Llama3.1-8B</td>
+          <td class="px-4 py-3 text-center font-mono">95.0</td>
+          <td class="px-4 py-3 text-center font-mono">3050</td>
+          <td class="px-4 py-3 text-center font-mono">59.0</td>
+          <td class="px-4 py-3 text-center font-mono">100.0%</td>
+          <td class="px-4 py-3 text-center font-mono">90.0%</td>
+          <td class="px-4 py-3 text-center font-mono">10</td>
+        </tr>
+        <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors ">
+          <td class="px-4 py-3 ">Qwen3-8B</td>
+          <td class="px-4 py-3 text-center font-mono">85.0</td>
+          <td class="px-4 py-3 text-center font-mono">25679</td>
+          <td class="px-4 py-3 text-center font-mono">88.2</td>
+          <td class="px-4 py-3 text-center font-mono">100.0%</td>
+          <td class="px-4 py-3 text-center font-mono">80.0%</td>
+          <td class="px-4 py-3 text-center font-mono">10</td>
+        </tr>
+        <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors ">
+          <td class="px-4 py-3 ">StarCoder2-15B</td>
+          <td class="px-4 py-3 text-center font-mono">20.0</td>
+          <td class="px-4 py-3 text-center font-mono">3592</td>
+          <td class="px-4 py-3 text-center font-mono">22.8</td>
+          <td class="px-4 py-3 text-center font-mono">100.0%</td>
+          <td class="px-4 py-3 text-center font-mono">20.0%</td>
+          <td class="px-4 py-3 text-center font-mono">10</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ── Charts ── -->
+  <section>
+    <h2 class="text-xl font-semibold text-slate-700 mb-4">Performance Charts</h2>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div class="chart-card bg-white rounded-2xl shadow-sm border border-slate-100 p-4 lg:col-span-2" id="chart1"></div>
+      <div class="chart-card bg-white rounded-2xl shadow-sm border border-slate-100 p-4" id="chart2"></div>
+      <div class="chart-card bg-white rounded-2xl shadow-sm border border-slate-100 p-4" id="chart3"></div>
+      <div class="chart-card bg-white rounded-2xl shadow-sm border border-slate-100 p-4" id="chart4"></div>
+      <div class="chart-card bg-white rounded-2xl shadow-sm border border-slate-100 p-4" id="chart5"></div>
+    </div>
+  </section>
+
+  <!-- ── Per-task detail table ── -->
+  <section>
+    <h2 class="text-xl font-semibold text-slate-700 mb-1">Per-Task Results</h2>
+    <p class="text-xs text-slate-400 mb-4">Click <span class="text-blue-600 underline">details</span> on any failed row to inspect extracted code, expected vs actual output, and stderr.</p>
+    <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-x-auto">
+      <table class="w-full text-sm">
+        <thead class="bg-slate-800 text-white">
+          <tr>
+            <th class="px-4 py-3 text-left font-medium">Model</th>
+            <th class="px-4 py-3 text-left font-medium">Task</th>
+            <th class="px-4 py-3 text-left font-medium">Category</th>
+            <th class="px-4 py-3 text-left font-medium">Difficulty</th>
+            <th class="px-4 py-3 text-center font-medium">Score</th>
+            <th class="px-4 py-3 text-center font-medium">Latency (ms)</th>
+            <th class="px-4 py-3 text-center font-medium">TPS</th>
+            <th class="px-4 py-3 text-center font-medium">Syntax</th>
+            <th class="px-4 py-3 text-center font-medium">Pass@1</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+        <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
+          <td class="px-4 py-3 text-sm font-medium text-slate-700">DeepSeek-Coder-V2-16B</td>
+          <td class="px-4 py-3 text-sm">Fibonacci Sequence<button onclick="toggleDetail('detail_30')" class="ml-2 text-xs text-blue-600 hover:text-blue-800 underline">details</button></td>
+          <td class="px-4 py-3 text-xs text-slate-500">Algorithm</td>
+          <td class="px-4 py-3 text-xs"><span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">easy</span></td>
+          <td class="px-4 py-3 text-center font-mono font-semibold text-red-700">0</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">0</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">0.0</td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-800">✗ Invalid</span></td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-800">✗ Fail</span></td>
+        </tr>
+        
+            <tr id="detail_30" class="hidden bg-slate-50">
+              <td colspan="9" class="px-6 py-4">
+                <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+                  <h4 class="text-sm font-semibold text-slate-700 mb-2">📋 Extracted Code</h4>
+                  <pre class="bg-slate-900 text-green-300 rounded-lg p-3 text-xs overflow-x-auto whitespace-pre-wrap mt-2"></pre>
+                  
+                  
+                </div>
+              </td>
+            </tr>
+        <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
+          <td class="px-4 py-3 text-sm font-medium text-slate-700">DeepSeek-Coder-V2-16B</td>
+          <td class="px-4 py-3 text-sm">Binary Search<button onclick="toggleDetail('detail_31')" class="ml-2 text-xs text-blue-600 hover:text-blue-800 underline">details</button></td>
+          <td class="px-4 py-3 text-xs text-slate-500">Algorithm</td>
+          <td class="px-4 py-3 text-xs"><span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">easy</span></td>
+          <td class="px-4 py-3 text-center font-mono font-semibold text-red-700">0</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">0</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">0.0</td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-800">✗ Invalid</span></td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-800">✗ Fail</span></td>
+        </tr>
+        
+            <tr id="detail_31" class="hidden bg-slate-50">
+              <td colspan="9" class="px-6 py-4">
+                <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+                  <h4 class="text-sm font-semibold text-slate-700 mb-2">📋 Extracted Code</h4>
+                  <pre class="bg-slate-900 text-green-300 rounded-lg p-3 text-xs overflow-x-auto whitespace-pre-wrap mt-2"></pre>
+                  
+                  
+                </div>
+              </td>
+            </tr>
+        <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
+          <td class="px-4 py-3 text-sm font-medium text-slate-700">DeepSeek-Coder-V2-16B</td>
+          <td class="px-4 py-3 text-sm">Linked List Reverse<button onclick="toggleDetail('detail_32')" class="ml-2 text-xs text-blue-600 hover:text-blue-800 underline">details</button></td>
+          <td class="px-4 py-3 text-xs text-slate-500">Data Structures</td>
+          <td class="px-4 py-3 text-xs"><span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">medium</span></td>
+          <td class="px-4 py-3 text-center font-mono font-semibold text-red-700">0</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">0</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">0.0</td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-800">✗ Invalid</span></td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-800">✗ Fail</span></td>
+        </tr>
+        
+            <tr id="detail_32" class="hidden bg-slate-50">
+              <td colspan="9" class="px-6 py-4">
+                <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+                  <h4 class="text-sm font-semibold text-slate-700 mb-2">📋 Extracted Code</h4>
+                  <pre class="bg-slate-900 text-green-300 rounded-lg p-3 text-xs overflow-x-auto whitespace-pre-wrap mt-2"></pre>
+                  
+                  
+                </div>
+              </td>
+            </tr>
+        <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
+          <td class="px-4 py-3 text-sm font-medium text-slate-700">DeepSeek-Coder-V2-16B</td>
+          <td class="px-4 py-3 text-sm">String Palindrome Check<button onclick="toggleDetail('detail_33')" class="ml-2 text-xs text-blue-600 hover:text-blue-800 underline">details</button></td>
+          <td class="px-4 py-3 text-xs text-slate-500">String Manipulation</td>
+          <td class="px-4 py-3 text-xs"><span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">easy</span></td>
+          <td class="px-4 py-3 text-center font-mono font-semibold text-red-700">0</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">0</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">0.0</td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-800">✗ Invalid</span></td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-800">✗ Fail</span></td>
+        </tr>
+        
+            <tr id="detail_33" class="hidden bg-slate-50">
+              <td colspan="9" class="px-6 py-4">
+                <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+                  <h4 class="text-sm font-semibold text-slate-700 mb-2">📋 Extracted Code</h4>
+                  <pre class="bg-slate-900 text-green-300 rounded-lg p-3 text-xs overflow-x-auto whitespace-pre-wrap mt-2"></pre>
+                  
+                  
+                </div>
+              </td>
+            </tr>
+        <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
+          <td class="px-4 py-3 text-sm font-medium text-slate-700">DeepSeek-Coder-V2-16B</td>
+          <td class="px-4 py-3 text-sm">Word Frequency Count<button onclick="toggleDetail('detail_34')" class="ml-2 text-xs text-blue-600 hover:text-blue-800 underline">details</button></td>
+          <td class="px-4 py-3 text-xs text-slate-500">String Manipulation</td>
+          <td class="px-4 py-3 text-xs"><span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">easy</span></td>
+          <td class="px-4 py-3 text-center font-mono font-semibold text-red-700">0</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">0</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">0.0</td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-800">✗ Invalid</span></td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-800">✗ Fail</span></td>
+        </tr>
+        
+            <tr id="detail_34" class="hidden bg-slate-50">
+              <td colspan="9" class="px-6 py-4">
+                <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+                  <h4 class="text-sm font-semibold text-slate-700 mb-2">📋 Extracted Code</h4>
+                  <pre class="bg-slate-900 text-green-300 rounded-lg p-3 text-xs overflow-x-auto whitespace-pre-wrap mt-2"></pre>
+                  
+                  
+                </div>
+              </td>
+            </tr>
+        <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
+          <td class="px-4 py-3 text-sm font-medium text-slate-700">DeepSeek-Coder-V2-16B</td>
+          <td class="px-4 py-3 text-sm">File Line Counter<button onclick="toggleDetail('detail_35')" class="ml-2 text-xs text-blue-600 hover:text-blue-800 underline">details</button></td>
+          <td class="px-4 py-3 text-xs text-slate-500">File I/O</td>
+          <td class="px-4 py-3 text-xs"><span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">easy</span></td>
+          <td class="px-4 py-3 text-center font-mono font-semibold text-red-700">0</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">0</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">0.0</td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-800">✗ Invalid</span></td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-800">✗ Fail</span></td>
+        </tr>
+        
+            <tr id="detail_35" class="hidden bg-slate-50">
+              <td colspan="9" class="px-6 py-4">
+                <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+                  <h4 class="text-sm font-semibold text-slate-700 mb-2">📋 Extracted Code</h4>
+                  <pre class="bg-slate-900 text-green-300 rounded-lg p-3 text-xs overflow-x-auto whitespace-pre-wrap mt-2"></pre>
+                  
+                  
+                </div>
+              </td>
+            </tr>
+        <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
+          <td class="px-4 py-3 text-sm font-medium text-slate-700">DeepSeek-Coder-V2-16B</td>
+          <td class="px-4 py-3 text-sm">Thread-Safe Counter<button onclick="toggleDetail('detail_36')" class="ml-2 text-xs text-blue-600 hover:text-blue-800 underline">details</button></td>
+          <td class="px-4 py-3 text-xs text-slate-500">Concurrency</td>
+          <td class="px-4 py-3 text-xs"><span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">medium</span></td>
+          <td class="px-4 py-3 text-center font-mono font-semibold text-red-700">0</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">0</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">0.0</td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-800">✗ Invalid</span></td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-800">✗ Fail</span></td>
+        </tr>
+        
+            <tr id="detail_36" class="hidden bg-slate-50">
+              <td colspan="9" class="px-6 py-4">
+                <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+                  <h4 class="text-sm font-semibold text-slate-700 mb-2">📋 Extracted Code</h4>
+                  <pre class="bg-slate-900 text-green-300 rounded-lg p-3 text-xs overflow-x-auto whitespace-pre-wrap mt-2"></pre>
+                  
+                  
+                </div>
+              </td>
+            </tr>
+        <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
+          <td class="px-4 py-3 text-sm font-medium text-slate-700">DeepSeek-Coder-V2-16B</td>
+          <td class="px-4 py-3 text-sm">Debug Buggy Sort<button onclick="toggleDetail('detail_37')" class="ml-2 text-xs text-blue-600 hover:text-blue-800 underline">details</button></td>
+          <td class="px-4 py-3 text-xs text-slate-500">Debugging</td>
+          <td class="px-4 py-3 text-xs"><span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">medium</span></td>
+          <td class="px-4 py-3 text-center font-mono font-semibold text-red-700">0</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">0</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">0.0</td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-800">✗ Invalid</span></td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-800">✗ Fail</span></td>
+        </tr>
+        
+            <tr id="detail_37" class="hidden bg-slate-50">
+              <td colspan="9" class="px-6 py-4">
+                <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+                  <h4 class="text-sm font-semibold text-slate-700 mb-2">📋 Extracted Code</h4>
+                  <pre class="bg-slate-900 text-green-300 rounded-lg p-3 text-xs overflow-x-auto whitespace-pre-wrap mt-2"></pre>
+                  
+                  
+                </div>
+              </td>
+            </tr>
+        <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
+          <td class="px-4 py-3 text-sm font-medium text-slate-700">DeepSeek-Coder-V2-16B</td>
+          <td class="px-4 py-3 text-sm">SQL Query Builder<button onclick="toggleDetail('detail_38')" class="ml-2 text-xs text-blue-600 hover:text-blue-800 underline">details</button></td>
+          <td class="px-4 py-3 text-xs text-slate-500">SQL</td>
+          <td class="px-4 py-3 text-xs"><span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">medium</span></td>
+          <td class="px-4 py-3 text-center font-mono font-semibold text-red-700">0</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">0</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">0.0</td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-800">✗ Invalid</span></td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-800">✗ Fail</span></td>
+        </tr>
+        
+            <tr id="detail_38" class="hidden bg-slate-50">
+              <td colspan="9" class="px-6 py-4">
+                <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+                  <h4 class="text-sm font-semibold text-slate-700 mb-2">📋 Extracted Code</h4>
+                  <pre class="bg-slate-900 text-green-300 rounded-lg p-3 text-xs overflow-x-auto whitespace-pre-wrap mt-2"></pre>
+                  
+                  
+                </div>
+              </td>
+            </tr>
+        <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
+          <td class="px-4 py-3 text-sm font-medium text-slate-700">DeepSeek-Coder-V2-16B</td>
+          <td class="px-4 py-3 text-sm">REST API URL Parser<button onclick="toggleDetail('detail_39')" class="ml-2 text-xs text-blue-600 hover:text-blue-800 underline">details</button></td>
+          <td class="px-4 py-3 text-xs text-slate-500">API Design</td>
+          <td class="px-4 py-3 text-xs"><span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">medium</span></td>
+          <td class="px-4 py-3 text-center font-mono font-semibold text-red-700">0</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">0</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">0.0</td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-800">✗ Invalid</span></td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-800">✗ Fail</span></td>
+        </tr>
+        
+            <tr id="detail_39" class="hidden bg-slate-50">
+              <td colspan="9" class="px-6 py-4">
+                <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+                  <h4 class="text-sm font-semibold text-slate-700 mb-2">📋 Extracted Code</h4>
+                  <pre class="bg-slate-900 text-green-300 rounded-lg p-3 text-xs overflow-x-auto whitespace-pre-wrap mt-2"></pre>
+                  
+                  
+                </div>
+              </td>
+            </tr>
+        <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
+          <td class="px-4 py-3 text-sm font-medium text-slate-700">Llama3.1-8B</td>
+          <td class="px-4 py-3 text-sm">Fibonacci Sequence</td>
+          <td class="px-4 py-3 text-xs text-slate-500">Algorithm</td>
+          <td class="px-4 py-3 text-xs"><span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">easy</span></td>
+          <td class="px-4 py-3 text-center font-mono font-semibold text-green-700">100</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">21731</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">2.1</td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">✓ Valid</span></td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">✓ Pass</span></td>
+        </tr>
+        
+        <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
+          <td class="px-4 py-3 text-sm font-medium text-slate-700">Llama3.1-8B</td>
+          <td class="px-4 py-3 text-sm">Binary Search</td>
+          <td class="px-4 py-3 text-xs text-slate-500">Algorithm</td>
+          <td class="px-4 py-3 text-xs"><span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">easy</span></td>
+          <td class="px-4 py-3 text-center font-mono font-semibold text-green-700">100</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">1187</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">71.6</td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">✓ Valid</span></td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">✓ Pass</span></td>
+        </tr>
+        
+        <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
+          <td class="px-4 py-3 text-sm font-medium text-slate-700">Llama3.1-8B</td>
+          <td class="px-4 py-3 text-sm">Linked List Reverse</td>
+          <td class="px-4 py-3 text-xs text-slate-500">Data Structures</td>
+          <td class="px-4 py-3 text-xs"><span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">medium</span></td>
+          <td class="px-4 py-3 text-center font-mono font-semibold text-green-700">100</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">758</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">48.8</td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">✓ Valid</span></td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">✓ Pass</span></td>
+        </tr>
+        
+        <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
+          <td class="px-4 py-3 text-sm font-medium text-slate-700">Llama3.1-8B</td>
+          <td class="px-4 py-3 text-sm">String Palindrome Check</td>
+          <td class="px-4 py-3 text-xs text-slate-500">String Manipulation</td>
+          <td class="px-4 py-3 text-xs"><span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">easy</span></td>
+          <td class="px-4 py-3 text-center font-mono font-semibold text-green-700">100</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">558</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">57.3</td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">✓ Valid</span></td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">✓ Pass</span></td>
+        </tr>
+        
+        <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
+          <td class="px-4 py-3 text-sm font-medium text-slate-700">Llama3.1-8B</td>
+          <td class="px-4 py-3 text-sm">Word Frequency Count</td>
+          <td class="px-4 py-3 text-xs text-slate-500">String Manipulation</td>
+          <td class="px-4 py-3 text-xs"><span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">easy</span></td>
+          <td class="px-4 py-3 text-center font-mono font-semibold text-green-700">100</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">588</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">49.4</td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">✓ Valid</span></td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">✓ Pass</span></td>
+        </tr>
+        
+        <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
+          <td class="px-4 py-3 text-sm font-medium text-slate-700">Llama3.1-8B</td>
+          <td class="px-4 py-3 text-sm">File Line Counter</td>
+          <td class="px-4 py-3 text-xs text-slate-500">File I/O</td>
+          <td class="px-4 py-3 text-xs"><span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">easy</span></td>
+          <td class="px-4 py-3 text-center font-mono font-semibold text-green-700">100</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">712</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">57.6</td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">✓ Valid</span></td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">✓ Pass</span></td>
+        </tr>
+        
+        <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
+          <td class="px-4 py-3 text-sm font-medium text-slate-700">Llama3.1-8B</td>
+          <td class="px-4 py-3 text-sm">Thread-Safe Counter</td>
+          <td class="px-4 py-3 text-xs text-slate-500">Concurrency</td>
+          <td class="px-4 py-3 text-xs"><span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">medium</span></td>
+          <td class="px-4 py-3 text-center font-mono font-semibold text-green-700">100</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">1783</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">86.9</td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">✓ Valid</span></td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">✓ Pass</span></td>
+        </tr>
+        
+        <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
+          <td class="px-4 py-3 text-sm font-medium text-slate-700">Llama3.1-8B</td>
+          <td class="px-4 py-3 text-sm">Debug Buggy Sort</td>
+          <td class="px-4 py-3 text-xs text-slate-500">Debugging</td>
+          <td class="px-4 py-3 text-xs"><span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">medium</span></td>
+          <td class="px-4 py-3 text-center font-mono font-semibold text-green-700">100</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">1126</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">76.4</td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">✓ Valid</span></td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">✓ Pass</span></td>
+        </tr>
+        
+        <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
+          <td class="px-4 py-3 text-sm font-medium text-slate-700">Llama3.1-8B</td>
+          <td class="px-4 py-3 text-sm">SQL Query Builder</td>
+          <td class="px-4 py-3 text-xs text-slate-500">SQL</td>
+          <td class="px-4 py-3 text-xs"><span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">medium</span></td>
+          <td class="px-4 py-3 text-center font-mono font-semibold text-green-700">100</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">934</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">66.3</td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">✓ Valid</span></td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">✓ Pass</span></td>
+        </tr>
+        
+        <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
+          <td class="px-4 py-3 text-sm font-medium text-slate-700">Llama3.1-8B</td>
+          <td class="px-4 py-3 text-sm">REST API URL Parser<button onclick="toggleDetail('detail_29')" class="ml-2 text-xs text-blue-600 hover:text-blue-800 underline">details</button></td>
+          <td class="px-4 py-3 text-xs text-slate-500">API Design</td>
+          <td class="px-4 py-3 text-xs"><span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">medium</span></td>
+          <td class="px-4 py-3 text-center font-mono font-semibold text-yellow-700">50</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">1121</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">73.1</td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">✓ Valid</span></td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-800">✗ Fail</span></td>
+        </tr>
+        
+            <tr id="detail_29" class="hidden bg-slate-50">
+              <td colspan="9" class="px-6 py-4">
+                <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+                  <h4 class="text-sm font-semibold text-slate-700 mb-2">📋 Extracted Code</h4>
+                  <pre class="bg-slate-900 text-green-300 rounded-lg p-3 text-xs overflow-x-auto whitespace-pre-wrap mt-2">from urllib.parse import urlparse, parse_qs
+
+def parse_api_url(url):
+    parsed = urlparse(url)
+    query_params = parse_qs(parsed.query)
+    return {
+        &#39;scheme&#39;: parsed.scheme,
+        &#39;host&#39;: parsed.hostname,
+        &#39;path&#39;: parsed.path,
+        &#39;query_params&#39;: {k: v[0] for k, v in query_params.items()}
+    }</pre>
+                  
+                  <div class="mt-3"><span class="text-xs font-semibold text-slate-600">Test Case Results:</span><div class="mt-1 space-y-2">
+                    <div class="border rounded p-2 text-xs border-green-300 bg-green-50">
+                      <div class="flex items-center gap-2">
+                        <span class="font-bold text-green-600">✓ Test 1</span>
+                        <span class="text-slate-500">Input: <code class="bg-white px-1 rounded">&#39;https://api.example.com/v1/users?page=1&amp;limit=10&#39;</code></span>
+                      </div>
+                      <div class="mt-1 grid grid-cols-2 gap-2">
+                        <div><span class="text-slate-500">Expected:</span><pre class="bg-white rounded p-1 mt-0.5">{&#39;scheme&#39;: &#39;https&#39;, &#39;host&#39;: &#39;api.example.com&#39;, &#39;path&#39;: &#39;/v1/users&#39;, &#39;query_params&#39;: {&#39;page&#39;: &#39;1&#39;, &#39;limit&#39;: &#39;10&#39;}}</pre></div>
+                        <div><span class="text-slate-500">Actual:</span><pre class="bg-white rounded p-1 mt-0.5">{&#39;scheme&#39;: &#39;https&#39;, &#39;host&#39;: &#39;api.example.com&#39;, &#39;path&#39;: &#39;/v1/users&#39;, &#39;query_params&#39;: {&#39;page&#39;: &#39;1&#39;, &#39;limit&#39;: &#39;10&#39;}}</pre></div>
+                      </div>
+                      
+                    </div>
+                    <div class="border rounded p-2 text-xs border-red-300 bg-red-50">
+                      <div class="flex items-center gap-2">
+                        <span class="font-bold text-red-600">✗ Test 2</span>
+                        <span class="text-slate-500">Input: <code class="bg-white px-1 rounded">&#39;http://localhost:8080/health&#39;</code></span>
+                      </div>
+                      <div class="mt-1 grid grid-cols-2 gap-2">
+                        <div><span class="text-slate-500">Expected:</span><pre class="bg-white rounded p-1 mt-0.5">{&#39;scheme&#39;: &#39;http&#39;, &#39;host&#39;: &#39;localhost:8080&#39;, &#39;path&#39;: &#39;/health&#39;, &#39;query_params&#39;: {}}</pre></div>
+                        <div><span class="text-slate-500">Actual:</span><pre class="bg-white rounded p-1 mt-0.5">{&#39;scheme&#39;: &#39;http&#39;, &#39;host&#39;: &#39;localhost&#39;, &#39;path&#39;: &#39;/health&#39;, &#39;query_params&#39;: {}}</pre></div>
+                      </div>
+                      
+                    </div></div></div>
+                </div>
+              </td>
+            </tr>
+        <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
+          <td class="px-4 py-3 text-sm font-medium text-slate-700">OmniCoder-9B</td>
+          <td class="px-4 py-3 text-sm">Fibonacci Sequence</td>
+          <td class="px-4 py-3 text-xs text-slate-500">Algorithm</td>
+          <td class="px-4 py-3 text-xs"><span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">easy</span></td>
+          <td class="px-4 py-3 text-center font-mono font-semibold text-green-700">100</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">15145</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">26.4</td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">✓ Valid</span></td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">✓ Pass</span></td>
+        </tr>
+        
+        <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
+          <td class="px-4 py-3 text-sm font-medium text-slate-700">OmniCoder-9B</td>
+          <td class="px-4 py-3 text-sm">Binary Search</td>
+          <td class="px-4 py-3 text-xs text-slate-500">Algorithm</td>
+          <td class="px-4 py-3 text-xs"><span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">easy</span></td>
+          <td class="px-4 py-3 text-center font-mono font-semibold text-green-700">100</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">5063</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">68.1</td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">✓ Valid</span></td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">✓ Pass</span></td>
+        </tr>
+        
+        <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
+          <td class="px-4 py-3 text-sm font-medium text-slate-700">OmniCoder-9B</td>
+          <td class="px-4 py-3 text-sm">Linked List Reverse</td>
+          <td class="px-4 py-3 text-xs text-slate-500">Data Structures</td>
+          <td class="px-4 py-3 text-xs"><span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">medium</span></td>
+          <td class="px-4 py-3 text-center font-mono font-semibold text-green-700">100</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">13194</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">72.2</td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">✓ Valid</span></td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">✓ Pass</span></td>
+        </tr>
+        
+        <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
+          <td class="px-4 py-3 text-sm font-medium text-slate-700">OmniCoder-9B</td>
+          <td class="px-4 py-3 text-sm">String Palindrome Check</td>
+          <td class="px-4 py-3 text-xs text-slate-500">String Manipulation</td>
+          <td class="px-4 py-3 text-xs"><span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">easy</span></td>
+          <td class="px-4 py-3 text-center font-mono font-semibold text-green-700">100</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">4079</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">67.2</td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">✓ Valid</span></td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">✓ Pass</span></td>
+        </tr>
+        
+        <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
+          <td class="px-4 py-3 text-sm font-medium text-slate-700">OmniCoder-9B</td>
+          <td class="px-4 py-3 text-sm">Word Frequency Count<button onclick="toggleDetail('detail_4')" class="ml-2 text-xs text-blue-600 hover:text-blue-800 underline">details</button></td>
+          <td class="px-4 py-3 text-xs text-slate-500">String Manipulation</td>
+          <td class="px-4 py-3 text-xs"><span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">easy</span></td>
+          <td class="px-4 py-3 text-center font-mono font-semibold text-red-700">0</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">112009</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">73.1</td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">✓ Valid</span></td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-800">✗ Fail</span></td>
+        </tr>
+        
+            <tr id="detail_4" class="hidden bg-slate-50">
+              <td colspan="9" class="px-6 py-4">
+                <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+                  <h4 class="text-sm font-semibold text-slate-700 mb-2">📋 Extracted Code</h4>
+                  <pre class="bg-slate-900 text-green-300 rounded-lg p-3 text-xs overflow-x-auto whitespace-pre-wrap mt-2"></pre>
+                  
+                  <div class="mt-3"><span class="text-xs font-semibold text-slate-600">Test Case Results:</span><div class="mt-1 space-y-2">
+                    <div class="border rounded p-2 text-xs border-red-300 bg-red-50">
+                      <div class="flex items-center gap-2">
+                        <span class="font-bold text-red-600">✗ Test 1</span>
+                        <span class="text-slate-500">Input: <code class="bg-white px-1 rounded">&quot;hello world hello&quot;</code></span>
+                      </div>
+                      <div class="mt-1 grid grid-cols-2 gap-2">
+                        <div><span class="text-slate-500">Expected:</span><pre class="bg-white rounded p-1 mt-0.5">{&#39;hello&#39;: 2, &#39;world&#39;: 1}</pre></div>
+                        <div><span class="text-slate-500">Actual:</span><pre class="bg-white rounded p-1 mt-0.5"><em class="text-slate-400">no output</em></pre></div>
+                      </div>
+                      <div class="mt-1"><span class="text-xs text-slate-500">stderr:</span><pre class="text-xs text-red-700 bg-red-50 rounded p-1 mt-0.5">Runtime error: ERROR: name &#39;word_count&#39; is not defined</pre></div>
+                    </div>
+                    <div class="border rounded p-2 text-xs border-red-300 bg-red-50">
+                      <div class="flex items-center gap-2">
+                        <span class="font-bold text-red-600">✗ Test 2</span>
+                        <span class="text-slate-500">Input: <code class="bg-white px-1 rounded">&quot;the cat sat on the mat&quot;</code></span>
+                      </div>
+                      <div class="mt-1 grid grid-cols-2 gap-2">
+                        <div><span class="text-slate-500">Expected:</span><pre class="bg-white rounded p-1 mt-0.5">{&#39;the&#39;: 2, &#39;cat&#39;: 1, &#39;sat&#39;: 1, &#39;on&#39;: 1, &#39;mat&#39;: 1}</pre></div>
+                        <div><span class="text-slate-500">Actual:</span><pre class="bg-white rounded p-1 mt-0.5"><em class="text-slate-400">no output</em></pre></div>
+                      </div>
+                      <div class="mt-1"><span class="text-xs text-slate-500">stderr:</span><pre class="text-xs text-red-700 bg-red-50 rounded p-1 mt-0.5">Runtime error: ERROR: name &#39;word_count&#39; is not defined</pre></div>
+                    </div>
+                    <div class="border rounded p-2 text-xs border-red-300 bg-red-50">
+                      <div class="flex items-center gap-2">
+                        <span class="font-bold text-red-600">✗ Test 3</span>
+                        <span class="text-slate-500">Input: <code class="bg-white px-1 rounded">&quot;one&quot;</code></span>
+                      </div>
+                      <div class="mt-1 grid grid-cols-2 gap-2">
+                        <div><span class="text-slate-500">Expected:</span><pre class="bg-white rounded p-1 mt-0.5">{&#39;one&#39;: 1}</pre></div>
+                        <div><span class="text-slate-500">Actual:</span><pre class="bg-white rounded p-1 mt-0.5"><em class="text-slate-400">no output</em></pre></div>
+                      </div>
+                      <div class="mt-1"><span class="text-xs text-slate-500">stderr:</span><pre class="text-xs text-red-700 bg-red-50 rounded p-1 mt-0.5">Runtime error: ERROR: name &#39;word_count&#39; is not defined</pre></div>
+                    </div></div></div>
+                </div>
+              </td>
+            </tr>
+        <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
+          <td class="px-4 py-3 text-sm font-medium text-slate-700">OmniCoder-9B</td>
+          <td class="px-4 py-3 text-sm">File Line Counter</td>
+          <td class="px-4 py-3 text-xs text-slate-500">File I/O</td>
+          <td class="px-4 py-3 text-xs"><span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">easy</span></td>
+          <td class="px-4 py-3 text-center font-mono font-semibold text-green-700">100</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">5430</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">67.2</td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">✓ Valid</span></td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">✓ Pass</span></td>
+        </tr>
+        
+        <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
+          <td class="px-4 py-3 text-sm font-medium text-slate-700">OmniCoder-9B</td>
+          <td class="px-4 py-3 text-sm">Thread-Safe Counter<button onclick="toggleDetail('detail_6')" class="ml-2 text-xs text-blue-600 hover:text-blue-800 underline">details</button></td>
+          <td class="px-4 py-3 text-xs text-slate-500">Concurrency</td>
+          <td class="px-4 py-3 text-xs"><span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">medium</span></td>
+          <td class="px-4 py-3 text-center font-mono font-semibold text-red-700">0</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">112390</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">72.9</td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">✓ Valid</span></td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-800">✗ Fail</span></td>
+        </tr>
+        
+            <tr id="detail_6" class="hidden bg-slate-50">
+              <td colspan="9" class="px-6 py-4">
+                <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+                  <h4 class="text-sm font-semibold text-slate-700 mb-2">📋 Extracted Code</h4>
+                  <pre class="bg-slate-900 text-green-300 rounded-lg p-3 text-xs overflow-x-auto whitespace-pre-wrap mt-2"></pre>
+                  
+                  <div class="mt-3"><span class="text-xs font-semibold text-slate-600">Test Case Results:</span><div class="mt-1 space-y-2">
+                    <div class="border rounded p-2 text-xs border-red-300 bg-red-50">
+                      <div class="flex items-center gap-2">
+                        <span class="font-bold text-red-600">✗ Test 1</span>
+                        <span class="text-slate-500">Input: <code class="bg-white px-1 rounded">[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]</code></span>
+                      </div>
+                      <div class="mt-1 grid grid-cols-2 gap-2">
+                        <div><span class="text-slate-500">Expected:</span><pre class="bg-white rounded p-1 mt-0.5">55</pre></div>
+                        <div><span class="text-slate-500">Actual:</span><pre class="bg-white rounded p-1 mt-0.5"><em class="text-slate-400">no output</em></pre></div>
+                      </div>
+                      <div class="mt-1"><span class="text-xs text-slate-500">stderr:</span><pre class="text-xs text-red-700 bg-red-50 rounded p-1 mt-0.5">Runtime error: ERROR: name &#39;parallel_sum&#39; is not defined</pre></div>
+                    </div>
+                    <div class="border rounded p-2 text-xs border-red-300 bg-red-50">
+                      <div class="flex items-center gap-2">
+                        <span class="font-bold text-red-600">✗ Test 2</span>
+                        <span class="text-slate-500">Input: <code class="bg-white px-1 rounded">[10, 20, 30]</code></span>
+                      </div>
+                      <div class="mt-1 grid grid-cols-2 gap-2">
+                        <div><span class="text-slate-500">Expected:</span><pre class="bg-white rounded p-1 mt-0.5">60</pre></div>
+                        <div><span class="text-slate-500">Actual:</span><pre class="bg-white rounded p-1 mt-0.5"><em class="text-slate-400">no output</em></pre></div>
+                      </div>
+                      <div class="mt-1"><span class="text-xs text-slate-500">stderr:</span><pre class="text-xs text-red-700 bg-red-50 rounded p-1 mt-0.5">Runtime error: ERROR: name &#39;parallel_sum&#39; is not defined</pre></div>
+                    </div>
+                    <div class="border rounded p-2 text-xs border-red-300 bg-red-50">
+                      <div class="flex items-center gap-2">
+                        <span class="font-bold text-red-600">✗ Test 3</span>
+                        <span class="text-slate-500">Input: <code class="bg-white px-1 rounded">[0, 0, 0]</code></span>
+                      </div>
+                      <div class="mt-1 grid grid-cols-2 gap-2">
+                        <div><span class="text-slate-500">Expected:</span><pre class="bg-white rounded p-1 mt-0.5">0</pre></div>
+                        <div><span class="text-slate-500">Actual:</span><pre class="bg-white rounded p-1 mt-0.5"><em class="text-slate-400">no output</em></pre></div>
+                      </div>
+                      <div class="mt-1"><span class="text-xs text-slate-500">stderr:</span><pre class="text-xs text-red-700 bg-red-50 rounded p-1 mt-0.5">Runtime error: ERROR: name &#39;parallel_sum&#39; is not defined</pre></div>
+                    </div></div></div>
+                </div>
+              </td>
+            </tr>
+        <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
+          <td class="px-4 py-3 text-sm font-medium text-slate-700">OmniCoder-9B</td>
+          <td class="px-4 py-3 text-sm">Debug Buggy Sort</td>
+          <td class="px-4 py-3 text-xs text-slate-500">Debugging</td>
+          <td class="px-4 py-3 text-xs"><span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">medium</span></td>
+          <td class="px-4 py-3 text-center font-mono font-semibold text-green-700">100</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">4337</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">65.5</td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">✓ Valid</span></td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">✓ Pass</span></td>
+        </tr>
+        
+        <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
+          <td class="px-4 py-3 text-sm font-medium text-slate-700">OmniCoder-9B</td>
+          <td class="px-4 py-3 text-sm">SQL Query Builder</td>
+          <td class="px-4 py-3 text-xs text-slate-500">SQL</td>
+          <td class="px-4 py-3 text-xs"><span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">medium</span></td>
+          <td class="px-4 py-3 text-center font-mono font-semibold text-green-700">100</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">7319</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">70.9</td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">✓ Valid</span></td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">✓ Pass</span></td>
+        </tr>
+        
+        <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
+          <td class="px-4 py-3 text-sm font-medium text-slate-700">OmniCoder-9B</td>
+          <td class="px-4 py-3 text-sm">REST API URL Parser<button onclick="toggleDetail('detail_9')" class="ml-2 text-xs text-blue-600 hover:text-blue-800 underline">details</button></td>
+          <td class="px-4 py-3 text-xs text-slate-500">API Design</td>
+          <td class="px-4 py-3 text-xs"><span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">medium</span></td>
+          <td class="px-4 py-3 text-center font-mono font-semibold text-yellow-700">50</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">9452</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">70.7</td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">✓ Valid</span></td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-800">✗ Fail</span></td>
+        </tr>
+        
+            <tr id="detail_9" class="hidden bg-slate-50">
+              <td colspan="9" class="px-6 py-4">
+                <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+                  <h4 class="text-sm font-semibold text-slate-700 mb-2">📋 Extracted Code</h4>
+                  <pre class="bg-slate-900 text-green-300 rounded-lg p-3 text-xs overflow-x-auto whitespace-pre-wrap mt-2">from urllib.parse import urlparse, parse_qs
+
+def parse_api_url(url):
+    parsed = urlparse(url)
+    scheme = parsed.scheme
+    host = parsed.hostname
+    path = parsed.path
+    query_params = parse_qs(parsed.query)
+    query_params = {k: v[0] if len(v) == 1 else v for k, v in query_params.items()}
+    return {
+        &#39;scheme&#39;: scheme,
+        &#39;host&#39;: host,
+        &#39;path&#39;: path,
+        &#39;query_params&#39;: query_params
+    }</pre>
+                  
+                  <div class="mt-3"><span class="text-xs font-semibold text-slate-600">Test Case Results:</span><div class="mt-1 space-y-2">
+                    <div class="border rounded p-2 text-xs border-green-300 bg-green-50">
+                      <div class="flex items-center gap-2">
+                        <span class="font-bold text-green-600">✓ Test 1</span>
+                        <span class="text-slate-500">Input: <code class="bg-white px-1 rounded">&#39;https://api.example.com/v1/users?page=1&amp;limit=10&#39;</code></span>
+                      </div>
+                      <div class="mt-1 grid grid-cols-2 gap-2">
+                        <div><span class="text-slate-500">Expected:</span><pre class="bg-white rounded p-1 mt-0.5">{&#39;scheme&#39;: &#39;https&#39;, &#39;host&#39;: &#39;api.example.com&#39;, &#39;path&#39;: &#39;/v1/users&#39;, &#39;query_params&#39;: {&#39;page&#39;: &#39;1&#39;, &#39;limit&#39;: &#39;10&#39;}}</pre></div>
+                        <div><span class="text-slate-500">Actual:</span><pre class="bg-white rounded p-1 mt-0.5">{&#39;scheme&#39;: &#39;https&#39;, &#39;host&#39;: &#39;api.example.com&#39;, &#39;path&#39;: &#39;/v1/users&#39;, &#39;query_params&#39;: {&#39;page&#39;: &#39;1&#39;, &#39;limit&#39;: &#39;10&#39;}}</pre></div>
+                      </div>
+                      
+                    </div>
+                    <div class="border rounded p-2 text-xs border-red-300 bg-red-50">
+                      <div class="flex items-center gap-2">
+                        <span class="font-bold text-red-600">✗ Test 2</span>
+                        <span class="text-slate-500">Input: <code class="bg-white px-1 rounded">&#39;http://localhost:8080/health&#39;</code></span>
+                      </div>
+                      <div class="mt-1 grid grid-cols-2 gap-2">
+                        <div><span class="text-slate-500">Expected:</span><pre class="bg-white rounded p-1 mt-0.5">{&#39;scheme&#39;: &#39;http&#39;, &#39;host&#39;: &#39;localhost:8080&#39;, &#39;path&#39;: &#39;/health&#39;, &#39;query_params&#39;: {}}</pre></div>
+                        <div><span class="text-slate-500">Actual:</span><pre class="bg-white rounded p-1 mt-0.5">{&#39;scheme&#39;: &#39;http&#39;, &#39;host&#39;: &#39;localhost&#39;, &#39;path&#39;: &#39;/health&#39;, &#39;query_params&#39;: {}}</pre></div>
+                      </div>
+                      
+                    </div></div></div>
+                </div>
+              </td>
+            </tr>
+        <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
+          <td class="px-4 py-3 text-sm font-medium text-slate-700">Qwen3-8B</td>
+          <td class="px-4 py-3 text-sm">Fibonacci Sequence</td>
+          <td class="px-4 py-3 text-xs text-slate-500">Algorithm</td>
+          <td class="px-4 py-3 text-xs"><span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">easy</span></td>
+          <td class="px-4 py-3 text-center font-mono font-semibold text-green-700">100</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">40964</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">45.1</td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">✓ Valid</span></td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">✓ Pass</span></td>
+        </tr>
+        
+        <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
+          <td class="px-4 py-3 text-sm font-medium text-slate-700">Qwen3-8B</td>
+          <td class="px-4 py-3 text-sm">Binary Search</td>
+          <td class="px-4 py-3 text-xs text-slate-500">Algorithm</td>
+          <td class="px-4 py-3 text-xs"><span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">easy</span></td>
+          <td class="px-4 py-3 text-center font-mono font-semibold text-green-700">100</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">8193</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">94.0</td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">✓ Valid</span></td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">✓ Pass</span></td>
+        </tr>
+        
+        <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
+          <td class="px-4 py-3 text-sm font-medium text-slate-700">Qwen3-8B</td>
+          <td class="px-4 py-3 text-sm">Linked List Reverse</td>
+          <td class="px-4 py-3 text-xs text-slate-500">Data Structures</td>
+          <td class="px-4 py-3 text-xs"><span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">medium</span></td>
+          <td class="px-4 py-3 text-center font-mono font-semibold text-green-700">100</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">5251</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">92.9</td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">✓ Valid</span></td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">✓ Pass</span></td>
+        </tr>
+        
+        <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
+          <td class="px-4 py-3 text-sm font-medium text-slate-700">Qwen3-8B</td>
+          <td class="px-4 py-3 text-sm">String Palindrome Check</td>
+          <td class="px-4 py-3 text-xs text-slate-500">String Manipulation</td>
+          <td class="px-4 py-3 text-xs"><span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">easy</span></td>
+          <td class="px-4 py-3 text-center font-mono font-semibold text-green-700">100</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">6489</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">92.0</td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">✓ Valid</span></td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">✓ Pass</span></td>
+        </tr>
+        
+        <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
+          <td class="px-4 py-3 text-sm font-medium text-slate-700">Qwen3-8B</td>
+          <td class="px-4 py-3 text-sm">Word Frequency Count</td>
+          <td class="px-4 py-3 text-xs text-slate-500">String Manipulation</td>
+          <td class="px-4 py-3 text-xs"><span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">easy</span></td>
+          <td class="px-4 py-3 text-center font-mono font-semibold text-green-700">100</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">25114</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">93.5</td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">✓ Valid</span></td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">✓ Pass</span></td>
+        </tr>
+        
+        <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
+          <td class="px-4 py-3 text-sm font-medium text-slate-700">Qwen3-8B</td>
+          <td class="px-4 py-3 text-sm">File Line Counter<button onclick="toggleDetail('detail_15')" class="ml-2 text-xs text-blue-600 hover:text-blue-800 underline">details</button></td>
+          <td class="px-4 py-3 text-xs text-slate-500">File I/O</td>
+          <td class="px-4 py-3 text-xs"><span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">easy</span></td>
+          <td class="px-4 py-3 text-center font-mono font-semibold text-red-700">0</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">91860</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">89.2</td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">✓ Valid</span></td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-800">✗ Fail</span></td>
+        </tr>
+        
+            <tr id="detail_15" class="hidden bg-slate-50">
+              <td colspan="9" class="px-6 py-4">
+                <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+                  <h4 class="text-sm font-semibold text-slate-700 mb-2">📋 Extracted Code</h4>
+                  <pre class="bg-slate-900 text-green-300 rounded-lg p-3 text-xs overflow-x-auto whitespace-pre-wrap mt-2"></pre>
+                  
+                  <div class="mt-3"><span class="text-xs font-semibold text-slate-600">Test Case Results:</span><div class="mt-1 space-y-2">
+                    <div class="border rounded p-2 text-xs border-red-300 bg-red-50">
+                      <div class="flex items-center gap-2">
+                        <span class="font-bold text-red-600">✗ Test 1</span>
+                        <span class="text-slate-500">Input: <code class="bg-white px-1 rounded">&quot;nonexistent_file_xyz.txt&quot;</code></span>
+                      </div>
+                      <div class="mt-1 grid grid-cols-2 gap-2">
+                        <div><span class="text-slate-500">Expected:</span><pre class="bg-white rounded p-1 mt-0.5">-1</pre></div>
+                        <div><span class="text-slate-500">Actual:</span><pre class="bg-white rounded p-1 mt-0.5"><em class="text-slate-400">no output</em></pre></div>
+                      </div>
+                      <div class="mt-1"><span class="text-xs text-slate-500">stderr:</span><pre class="text-xs text-red-700 bg-red-50 rounded p-1 mt-0.5">Runtime error: ERROR: name &#39;count_lines&#39; is not defined</pre></div>
+                    </div></div></div>
+                </div>
+              </td>
+            </tr>
+        <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
+          <td class="px-4 py-3 text-sm font-medium text-slate-700">Qwen3-8B</td>
+          <td class="px-4 py-3 text-sm">Thread-Safe Counter</td>
+          <td class="px-4 py-3 text-xs text-slate-500">Concurrency</td>
+          <td class="px-4 py-3 text-xs"><span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">medium</span></td>
+          <td class="px-4 py-3 text-center font-mono font-semibold text-green-700">100</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">21590</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">93.5</td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">✓ Valid</span></td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">✓ Pass</span></td>
+        </tr>
+        
+        <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
+          <td class="px-4 py-3 text-sm font-medium text-slate-700">Qwen3-8B</td>
+          <td class="px-4 py-3 text-sm">Debug Buggy Sort</td>
+          <td class="px-4 py-3 text-xs text-slate-500">Debugging</td>
+          <td class="px-4 py-3 text-xs"><span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">medium</span></td>
+          <td class="px-4 py-3 text-center font-mono font-semibold text-green-700">100</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">13714</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">94.3</td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">✓ Valid</span></td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">✓ Pass</span></td>
+        </tr>
+        
+        <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
+          <td class="px-4 py-3 text-sm font-medium text-slate-700">Qwen3-8B</td>
+          <td class="px-4 py-3 text-sm">SQL Query Builder</td>
+          <td class="px-4 py-3 text-xs text-slate-500">SQL</td>
+          <td class="px-4 py-3 text-xs"><span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">medium</span></td>
+          <td class="px-4 py-3 text-center font-mono font-semibold text-green-700">100</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">14775</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">93.8</td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">✓ Valid</span></td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">✓ Pass</span></td>
+        </tr>
+        
+        <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
+          <td class="px-4 py-3 text-sm font-medium text-slate-700">Qwen3-8B</td>
+          <td class="px-4 py-3 text-sm">REST API URL Parser<button onclick="toggleDetail('detail_19')" class="ml-2 text-xs text-blue-600 hover:text-blue-800 underline">details</button></td>
+          <td class="px-4 py-3 text-xs text-slate-500">API Design</td>
+          <td class="px-4 py-3 text-xs"><span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">medium</span></td>
+          <td class="px-4 py-3 text-center font-mono font-semibold text-yellow-700">50</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">28836</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">93.5</td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">✓ Valid</span></td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-800">✗ Fail</span></td>
+        </tr>
+        
+            <tr id="detail_19" class="hidden bg-slate-50">
+              <td colspan="9" class="px-6 py-4">
+                <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+                  <h4 class="text-sm font-semibold text-slate-700 mb-2">📋 Extracted Code</h4>
+                  <pre class="bg-slate-900 text-green-300 rounded-lg p-3 text-xs overflow-x-auto whitespace-pre-wrap mt-2">import urllib.parse
+
+def parse_api_url(url):
+    parsed = urllib.parse.urlparse(url)
+    scheme = parsed.scheme
+    host = parsed.netloc.split(&#39;:&#39;)[0]
+    path = parsed.path
+    query_params = urllib.parse.parse_qs(parsed.query)
+    query_params = {k: v[0] for k, v in query_params.items()}
+    return {
+        &#39;scheme&#39;: scheme,
+        &#39;host&#39;: host,
+        &#39;path&#39;: path,
+        &#39;query_params&#39;: query_params
+    }</pre>
+                  
+                  <div class="mt-3"><span class="text-xs font-semibold text-slate-600">Test Case Results:</span><div class="mt-1 space-y-2">
+                    <div class="border rounded p-2 text-xs border-green-300 bg-green-50">
+                      <div class="flex items-center gap-2">
+                        <span class="font-bold text-green-600">✓ Test 1</span>
+                        <span class="text-slate-500">Input: <code class="bg-white px-1 rounded">&#39;https://api.example.com/v1/users?page=1&amp;limit=10&#39;</code></span>
+                      </div>
+                      <div class="mt-1 grid grid-cols-2 gap-2">
+                        <div><span class="text-slate-500">Expected:</span><pre class="bg-white rounded p-1 mt-0.5">{&#39;scheme&#39;: &#39;https&#39;, &#39;host&#39;: &#39;api.example.com&#39;, &#39;path&#39;: &#39;/v1/users&#39;, &#39;query_params&#39;: {&#39;page&#39;: &#39;1&#39;, &#39;limit&#39;: &#39;10&#39;}}</pre></div>
+                        <div><span class="text-slate-500">Actual:</span><pre class="bg-white rounded p-1 mt-0.5">{&#39;scheme&#39;: &#39;https&#39;, &#39;host&#39;: &#39;api.example.com&#39;, &#39;path&#39;: &#39;/v1/users&#39;, &#39;query_params&#39;: {&#39;page&#39;: &#39;1&#39;, &#39;limit&#39;: &#39;10&#39;}}</pre></div>
+                      </div>
+                      
+                    </div>
+                    <div class="border rounded p-2 text-xs border-red-300 bg-red-50">
+                      <div class="flex items-center gap-2">
+                        <span class="font-bold text-red-600">✗ Test 2</span>
+                        <span class="text-slate-500">Input: <code class="bg-white px-1 rounded">&#39;http://localhost:8080/health&#39;</code></span>
+                      </div>
+                      <div class="mt-1 grid grid-cols-2 gap-2">
+                        <div><span class="text-slate-500">Expected:</span><pre class="bg-white rounded p-1 mt-0.5">{&#39;scheme&#39;: &#39;http&#39;, &#39;host&#39;: &#39;localhost:8080&#39;, &#39;path&#39;: &#39;/health&#39;, &#39;query_params&#39;: {}}</pre></div>
+                        <div><span class="text-slate-500">Actual:</span><pre class="bg-white rounded p-1 mt-0.5">{&#39;scheme&#39;: &#39;http&#39;, &#39;host&#39;: &#39;localhost&#39;, &#39;path&#39;: &#39;/health&#39;, &#39;query_params&#39;: {}}</pre></div>
+                      </div>
+                      
+                    </div></div></div>
+                </div>
+              </td>
+            </tr>
+        <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
+          <td class="px-4 py-3 text-sm font-medium text-slate-700">StarCoder2-15B</td>
+          <td class="px-4 py-3 text-sm">Fibonacci Sequence<button onclick="toggleDetail('detail_40')" class="ml-2 text-xs text-blue-600 hover:text-blue-800 underline">details</button></td>
+          <td class="px-4 py-3 text-xs text-slate-500">Algorithm</td>
+          <td class="px-4 py-3 text-xs"><span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">easy</span></td>
+          <td class="px-4 py-3 text-center font-mono font-semibold text-red-700">0</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">30196</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">0.1</td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">✓ Valid</span></td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-800">✗ Fail</span></td>
+        </tr>
+        
+            <tr id="detail_40" class="hidden bg-slate-50">
+              <td colspan="9" class="px-6 py-4">
+                <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+                  <h4 class="text-sm font-semibold text-slate-700 mb-2">📋 Extracted Code</h4>
+                  <pre class="bg-slate-900 text-green-300 rounded-lg p-3 text-xs overflow-x-auto whitespace-pre-wrap mt-2"></pre>
+                  
+                  <div class="mt-3"><span class="text-xs font-semibold text-slate-600">Test Case Results:</span><div class="mt-1 space-y-2">
+                    <div class="border rounded p-2 text-xs border-red-300 bg-red-50">
+                      <div class="flex items-center gap-2">
+                        <span class="font-bold text-red-600">✗ Test 1</span>
+                        <span class="text-slate-500">Input: <code class="bg-white px-1 rounded">0</code></span>
+                      </div>
+                      <div class="mt-1 grid grid-cols-2 gap-2">
+                        <div><span class="text-slate-500">Expected:</span><pre class="bg-white rounded p-1 mt-0.5">0</pre></div>
+                        <div><span class="text-slate-500">Actual:</span><pre class="bg-white rounded p-1 mt-0.5"><em class="text-slate-400">no output</em></pre></div>
+                      </div>
+                      <div class="mt-1"><span class="text-xs text-slate-500">stderr:</span><pre class="text-xs text-red-700 bg-red-50 rounded p-1 mt-0.5">Runtime error: ERROR: name &#39;fibonacci&#39; is not defined</pre></div>
+                    </div>
+                    <div class="border rounded p-2 text-xs border-red-300 bg-red-50">
+                      <div class="flex items-center gap-2">
+                        <span class="font-bold text-red-600">✗ Test 2</span>
+                        <span class="text-slate-500">Input: <code class="bg-white px-1 rounded">1</code></span>
+                      </div>
+                      <div class="mt-1 grid grid-cols-2 gap-2">
+                        <div><span class="text-slate-500">Expected:</span><pre class="bg-white rounded p-1 mt-0.5">1</pre></div>
+                        <div><span class="text-slate-500">Actual:</span><pre class="bg-white rounded p-1 mt-0.5"><em class="text-slate-400">no output</em></pre></div>
+                      </div>
+                      <div class="mt-1"><span class="text-xs text-slate-500">stderr:</span><pre class="text-xs text-red-700 bg-red-50 rounded p-1 mt-0.5">Runtime error: ERROR: name &#39;fibonacci&#39; is not defined</pre></div>
+                    </div>
+                    <div class="border rounded p-2 text-xs border-red-300 bg-red-50">
+                      <div class="flex items-center gap-2">
+                        <span class="font-bold text-red-600">✗ Test 3</span>
+                        <span class="text-slate-500">Input: <code class="bg-white px-1 rounded">5</code></span>
+                      </div>
+                      <div class="mt-1 grid grid-cols-2 gap-2">
+                        <div><span class="text-slate-500">Expected:</span><pre class="bg-white rounded p-1 mt-0.5">5</pre></div>
+                        <div><span class="text-slate-500">Actual:</span><pre class="bg-white rounded p-1 mt-0.5"><em class="text-slate-400">no output</em></pre></div>
+                      </div>
+                      <div class="mt-1"><span class="text-xs text-slate-500">stderr:</span><pre class="text-xs text-red-700 bg-red-50 rounded p-1 mt-0.5">Runtime error: ERROR: name &#39;fibonacci&#39; is not defined</pre></div>
+                    </div>
+                    <div class="border rounded p-2 text-xs border-red-300 bg-red-50">
+                      <div class="flex items-center gap-2">
+                        <span class="font-bold text-red-600">✗ Test 4</span>
+                        <span class="text-slate-500">Input: <code class="bg-white px-1 rounded">10</code></span>
+                      </div>
+                      <div class="mt-1 grid grid-cols-2 gap-2">
+                        <div><span class="text-slate-500">Expected:</span><pre class="bg-white rounded p-1 mt-0.5">55</pre></div>
+                        <div><span class="text-slate-500">Actual:</span><pre class="bg-white rounded p-1 mt-0.5"><em class="text-slate-400">no output</em></pre></div>
+                      </div>
+                      <div class="mt-1"><span class="text-xs text-slate-500">stderr:</span><pre class="text-xs text-red-700 bg-red-50 rounded p-1 mt-0.5">Runtime error: ERROR: name &#39;fibonacci&#39; is not defined</pre></div>
+                    </div></div></div>
+                </div>
+              </td>
+            </tr>
+        <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
+          <td class="px-4 py-3 text-sm font-medium text-slate-700">StarCoder2-15B</td>
+          <td class="px-4 py-3 text-sm">Binary Search</td>
+          <td class="px-4 py-3 text-xs text-slate-500">Algorithm</td>
+          <td class="px-4 py-3 text-xs"><span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">easy</span></td>
+          <td class="px-4 py-3 text-center font-mono font-semibold text-green-700">100</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">1588</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">57.3</td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">✓ Valid</span></td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">✓ Pass</span></td>
+        </tr>
+        
+        <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
+          <td class="px-4 py-3 text-sm font-medium text-slate-700">StarCoder2-15B</td>
+          <td class="px-4 py-3 text-sm">Linked List Reverse<button onclick="toggleDetail('detail_42')" class="ml-2 text-xs text-blue-600 hover:text-blue-800 underline">details</button></td>
+          <td class="px-4 py-3 text-xs text-slate-500">Data Structures</td>
+          <td class="px-4 py-3 text-xs"><span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">medium</span></td>
+          <td class="px-4 py-3 text-center font-mono font-semibold text-red-700">0</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">139</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">14.4</td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">✓ Valid</span></td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-800">✗ Fail</span></td>
+        </tr>
+        
+            <tr id="detail_42" class="hidden bg-slate-50">
+              <td colspan="9" class="px-6 py-4">
+                <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+                  <h4 class="text-sm font-semibold text-slate-700 mb-2">📋 Extracted Code</h4>
+                  <pre class="bg-slate-900 text-green-300 rounded-lg p-3 text-xs overflow-x-auto whitespace-pre-wrap mt-2"></pre>
+                  
+                  <div class="mt-3"><span class="text-xs font-semibold text-slate-600">Test Case Results:</span><div class="mt-1 space-y-2">
+                    <div class="border rounded p-2 text-xs border-red-300 bg-red-50">
+                      <div class="flex items-center gap-2">
+                        <span class="font-bold text-red-600">✗ Test 1</span>
+                        <span class="text-slate-500">Input: <code class="bg-white px-1 rounded">[1, 2, 3, 4, 5]</code></span>
+                      </div>
+                      <div class="mt-1 grid grid-cols-2 gap-2">
+                        <div><span class="text-slate-500">Expected:</span><pre class="bg-white rounded p-1 mt-0.5">[5, 4, 3, 2, 1]</pre></div>
+                        <div><span class="text-slate-500">Actual:</span><pre class="bg-white rounded p-1 mt-0.5"><em class="text-slate-400">no output</em></pre></div>
+                      </div>
+                      <div class="mt-1"><span class="text-xs text-slate-500">stderr:</span><pre class="text-xs text-red-700 bg-red-50 rounded p-1 mt-0.5">Runtime error: ERROR: name &#39;reverse_list&#39; is not defined</pre></div>
+                    </div>
+                    <div class="border rounded p-2 text-xs border-red-300 bg-red-50">
+                      <div class="flex items-center gap-2">
+                        <span class="font-bold text-red-600">✗ Test 2</span>
+                        <span class="text-slate-500">Input: <code class="bg-white px-1 rounded">[10, 20]</code></span>
+                      </div>
+                      <div class="mt-1 grid grid-cols-2 gap-2">
+                        <div><span class="text-slate-500">Expected:</span><pre class="bg-white rounded p-1 mt-0.5">[20, 10]</pre></div>
+                        <div><span class="text-slate-500">Actual:</span><pre class="bg-white rounded p-1 mt-0.5"><em class="text-slate-400">no output</em></pre></div>
+                      </div>
+                      <div class="mt-1"><span class="text-xs text-slate-500">stderr:</span><pre class="text-xs text-red-700 bg-red-50 rounded p-1 mt-0.5">Runtime error: ERROR: name &#39;reverse_list&#39; is not defined</pre></div>
+                    </div>
+                    <div class="border rounded p-2 text-xs border-red-300 bg-red-50">
+                      <div class="flex items-center gap-2">
+                        <span class="font-bold text-red-600">✗ Test 3</span>
+                        <span class="text-slate-500">Input: <code class="bg-white px-1 rounded">[42]</code></span>
+                      </div>
+                      <div class="mt-1 grid grid-cols-2 gap-2">
+                        <div><span class="text-slate-500">Expected:</span><pre class="bg-white rounded p-1 mt-0.5">[42]</pre></div>
+                        <div><span class="text-slate-500">Actual:</span><pre class="bg-white rounded p-1 mt-0.5"><em class="text-slate-400">no output</em></pre></div>
+                      </div>
+                      <div class="mt-1"><span class="text-xs text-slate-500">stderr:</span><pre class="text-xs text-red-700 bg-red-50 rounded p-1 mt-0.5">Runtime error: ERROR: name &#39;reverse_list&#39; is not defined</pre></div>
+                    </div>
+                    <div class="border rounded p-2 text-xs border-red-300 bg-red-50">
+                      <div class="flex items-center gap-2">
+                        <span class="font-bold text-red-600">✗ Test 4</span>
+                        <span class="text-slate-500">Input: <code class="bg-white px-1 rounded">[]</code></span>
+                      </div>
+                      <div class="mt-1 grid grid-cols-2 gap-2">
+                        <div><span class="text-slate-500">Expected:</span><pre class="bg-white rounded p-1 mt-0.5">[]</pre></div>
+                        <div><span class="text-slate-500">Actual:</span><pre class="bg-white rounded p-1 mt-0.5"><em class="text-slate-400">no output</em></pre></div>
+                      </div>
+                      <div class="mt-1"><span class="text-xs text-slate-500">stderr:</span><pre class="text-xs text-red-700 bg-red-50 rounded p-1 mt-0.5">Runtime error: ERROR: name &#39;reverse_list&#39; is not defined</pre></div>
+                    </div></div></div>
+                </div>
+              </td>
+            </tr>
+        <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
+          <td class="px-4 py-3 text-sm font-medium text-slate-700">StarCoder2-15B</td>
+          <td class="px-4 py-3 text-sm">String Palindrome Check<button onclick="toggleDetail('detail_43')" class="ml-2 text-xs text-blue-600 hover:text-blue-800 underline">details</button></td>
+          <td class="px-4 py-3 text-xs text-slate-500">String Manipulation</td>
+          <td class="px-4 py-3 text-xs"><span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">easy</span></td>
+          <td class="px-4 py-3 text-center font-mono font-semibold text-red-700">0</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">191</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">10.5</td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">✓ Valid</span></td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-800">✗ Fail</span></td>
+        </tr>
+        
+            <tr id="detail_43" class="hidden bg-slate-50">
+              <td colspan="9" class="px-6 py-4">
+                <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+                  <h4 class="text-sm font-semibold text-slate-700 mb-2">📋 Extracted Code</h4>
+                  <pre class="bg-slate-900 text-green-300 rounded-lg p-3 text-xs overflow-x-auto whitespace-pre-wrap mt-2"></pre>
+                  
+                  <div class="mt-3"><span class="text-xs font-semibold text-slate-600">Test Case Results:</span><div class="mt-1 space-y-2">
+                    <div class="border rounded p-2 text-xs border-red-300 bg-red-50">
+                      <div class="flex items-center gap-2">
+                        <span class="font-bold text-red-600">✗ Test 1</span>
+                        <span class="text-slate-500">Input: <code class="bg-white px-1 rounded">&quot;racecar&quot;</code></span>
+                      </div>
+                      <div class="mt-1 grid grid-cols-2 gap-2">
+                        <div><span class="text-slate-500">Expected:</span><pre class="bg-white rounded p-1 mt-0.5">True</pre></div>
+                        <div><span class="text-slate-500">Actual:</span><pre class="bg-white rounded p-1 mt-0.5"><em class="text-slate-400">no output</em></pre></div>
+                      </div>
+                      <div class="mt-1"><span class="text-xs text-slate-500">stderr:</span><pre class="text-xs text-red-700 bg-red-50 rounded p-1 mt-0.5">Runtime error: ERROR: name &#39;is_palindrome&#39; is not defined</pre></div>
+                    </div>
+                    <div class="border rounded p-2 text-xs border-red-300 bg-red-50">
+                      <div class="flex items-center gap-2">
+                        <span class="font-bold text-red-600">✗ Test 2</span>
+                        <span class="text-slate-500">Input: <code class="bg-white px-1 rounded">&quot;A man a plan a canal Panama&quot;</code></span>
+                      </div>
+                      <div class="mt-1 grid grid-cols-2 gap-2">
+                        <div><span class="text-slate-500">Expected:</span><pre class="bg-white rounded p-1 mt-0.5">True</pre></div>
+                        <div><span class="text-slate-500">Actual:</span><pre class="bg-white rounded p-1 mt-0.5"><em class="text-slate-400">no output</em></pre></div>
+                      </div>
+                      <div class="mt-1"><span class="text-xs text-slate-500">stderr:</span><pre class="text-xs text-red-700 bg-red-50 rounded p-1 mt-0.5">Runtime error: ERROR: name &#39;is_palindrome&#39; is not defined</pre></div>
+                    </div>
+                    <div class="border rounded p-2 text-xs border-red-300 bg-red-50">
+                      <div class="flex items-center gap-2">
+                        <span class="font-bold text-red-600">✗ Test 3</span>
+                        <span class="text-slate-500">Input: <code class="bg-white px-1 rounded">&quot;hello&quot;</code></span>
+                      </div>
+                      <div class="mt-1 grid grid-cols-2 gap-2">
+                        <div><span class="text-slate-500">Expected:</span><pre class="bg-white rounded p-1 mt-0.5">False</pre></div>
+                        <div><span class="text-slate-500">Actual:</span><pre class="bg-white rounded p-1 mt-0.5"><em class="text-slate-400">no output</em></pre></div>
+                      </div>
+                      <div class="mt-1"><span class="text-xs text-slate-500">stderr:</span><pre class="text-xs text-red-700 bg-red-50 rounded p-1 mt-0.5">Runtime error: ERROR: name &#39;is_palindrome&#39; is not defined</pre></div>
+                    </div>
+                    <div class="border rounded p-2 text-xs border-red-300 bg-red-50">
+                      <div class="flex items-center gap-2">
+                        <span class="font-bold text-red-600">✗ Test 4</span>
+                        <span class="text-slate-500">Input: <code class="bg-white px-1 rounded">&quot;&quot;</code></span>
+                      </div>
+                      <div class="mt-1 grid grid-cols-2 gap-2">
+                        <div><span class="text-slate-500">Expected:</span><pre class="bg-white rounded p-1 mt-0.5">True</pre></div>
+                        <div><span class="text-slate-500">Actual:</span><pre class="bg-white rounded p-1 mt-0.5"><em class="text-slate-400">no output</em></pre></div>
+                      </div>
+                      <div class="mt-1"><span class="text-xs text-slate-500">stderr:</span><pre class="text-xs text-red-700 bg-red-50 rounded p-1 mt-0.5">Runtime error: ERROR: name &#39;is_palindrome&#39; is not defined</pre></div>
+                    </div></div></div>
+                </div>
+              </td>
+            </tr>
+        <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
+          <td class="px-4 py-3 text-sm font-medium text-slate-700">StarCoder2-15B</td>
+          <td class="px-4 py-3 text-sm">Word Frequency Count</td>
+          <td class="px-4 py-3 text-xs text-slate-500">String Manipulation</td>
+          <td class="px-4 py-3 text-xs"><span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">easy</span></td>
+          <td class="px-4 py-3 text-center font-mono font-semibold text-green-700">100</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">1108</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">55.1</td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">✓ Valid</span></td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">✓ Pass</span></td>
+        </tr>
+        
+        <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
+          <td class="px-4 py-3 text-sm font-medium text-slate-700">StarCoder2-15B</td>
+          <td class="px-4 py-3 text-sm">File Line Counter<button onclick="toggleDetail('detail_45')" class="ml-2 text-xs text-blue-600 hover:text-blue-800 underline">details</button></td>
+          <td class="px-4 py-3 text-xs text-slate-500">File I/O</td>
+          <td class="px-4 py-3 text-xs"><span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">easy</span></td>
+          <td class="px-4 py-3 text-center font-mono font-semibold text-red-700">0</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">181</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">11.1</td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">✓ Valid</span></td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-800">✗ Fail</span></td>
+        </tr>
+        
+            <tr id="detail_45" class="hidden bg-slate-50">
+              <td colspan="9" class="px-6 py-4">
+                <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+                  <h4 class="text-sm font-semibold text-slate-700 mb-2">📋 Extracted Code</h4>
+                  <pre class="bg-slate-900 text-green-300 rounded-lg p-3 text-xs overflow-x-auto whitespace-pre-wrap mt-2"></pre>
+                  
+                  <div class="mt-3"><span class="text-xs font-semibold text-slate-600">Test Case Results:</span><div class="mt-1 space-y-2">
+                    <div class="border rounded p-2 text-xs border-red-300 bg-red-50">
+                      <div class="flex items-center gap-2">
+                        <span class="font-bold text-red-600">✗ Test 1</span>
+                        <span class="text-slate-500">Input: <code class="bg-white px-1 rounded">&quot;nonexistent_file_xyz.txt&quot;</code></span>
+                      </div>
+                      <div class="mt-1 grid grid-cols-2 gap-2">
+                        <div><span class="text-slate-500">Expected:</span><pre class="bg-white rounded p-1 mt-0.5">-1</pre></div>
+                        <div><span class="text-slate-500">Actual:</span><pre class="bg-white rounded p-1 mt-0.5"><em class="text-slate-400">no output</em></pre></div>
+                      </div>
+                      <div class="mt-1"><span class="text-xs text-slate-500">stderr:</span><pre class="text-xs text-red-700 bg-red-50 rounded p-1 mt-0.5">Runtime error: ERROR: name &#39;count_lines&#39; is not defined</pre></div>
+                    </div></div></div>
+                </div>
+              </td>
+            </tr>
+        <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
+          <td class="px-4 py-3 text-sm font-medium text-slate-700">StarCoder2-15B</td>
+          <td class="px-4 py-3 text-sm">Thread-Safe Counter<button onclick="toggleDetail('detail_46')" class="ml-2 text-xs text-blue-600 hover:text-blue-800 underline">details</button></td>
+          <td class="px-4 py-3 text-xs text-slate-500">Concurrency</td>
+          <td class="px-4 py-3 text-xs"><span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">medium</span></td>
+          <td class="px-4 py-3 text-center font-mono font-semibold text-red-700">0</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">1902</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">59.9</td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">✓ Valid</span></td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-800">✗ Fail</span></td>
+        </tr>
+        
+            <tr id="detail_46" class="hidden bg-slate-50">
+              <td colspan="9" class="px-6 py-4">
+                <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+                  <h4 class="text-sm font-semibold text-slate-700 mb-2">📋 Extracted Code</h4>
+                  <pre class="bg-slate-900 text-green-300 rounded-lg p-3 text-xs overflow-x-auto whitespace-pre-wrap mt-2">import threading
+def parallel_sum(numbers):
+    if len(numbers) == 1:
+        return numbers[0]
+    else:
+        mid = len(numbers)//2
+        left = threading.Thread(target=parallel_sum, args=(numbers[:mid],))
+        right = threading.Thread(target=parallel_sum, args=(numbers[mid:],))
+        left.start()
+        right.start()
+        left.join()
+        right.join()
+        return left.result + right.result</pre>
+                  
+                  <div class="mt-3"><span class="text-xs font-semibold text-slate-600">Test Case Results:</span><div class="mt-1 space-y-2">
+                    <div class="border rounded p-2 text-xs border-red-300 bg-red-50">
+                      <div class="flex items-center gap-2">
+                        <span class="font-bold text-red-600">✗ Test 1</span>
+                        <span class="text-slate-500">Input: <code class="bg-white px-1 rounded">[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]</code></span>
+                      </div>
+                      <div class="mt-1 grid grid-cols-2 gap-2">
+                        <div><span class="text-slate-500">Expected:</span><pre class="bg-white rounded p-1 mt-0.5">55</pre></div>
+                        <div><span class="text-slate-500">Actual:</span><pre class="bg-white rounded p-1 mt-0.5"><em class="text-slate-400">no output</em></pre></div>
+                      </div>
+                      <div class="mt-1"><span class="text-xs text-slate-500">stderr:</span><pre class="text-xs text-red-700 bg-red-50 rounded p-1 mt-0.5">Runtime error: Exception in thread Thread-7 (parallel_sum):
+Traceback (most recent call last):
+  File &quot;/usr/lib/python3.12/threading.py&quot;, line 1073, in _bootstrap_inner
+Exception in thread Thread-3 (parallel_sum):
+Traceback (most recent call last):
+  File &quot;/usr/lib/python3.12/threading.py&quot;, line 1073, in _bootstrap_inner
+    self.run()
+    self.run()
+  File &quot;/usr/lib/python3.12/threading.py&quot;, line 1010, in run
+Exception in thread Thread-14 (parallel_sum):
+Traceback (most recent call last):
+  File &quot;/usr/lib/python3.12/threading.py&quot;, line 1010, in run
+  File &quot;/usr/lib/python3.12/threading.py&quot;, line 1073, in _bootstrap_inner
+    self._target(*self._args, **self._kwargs)
+Exception in thread Thread-10 (parallel_sum):
+  File &quot;/tmp/tmp46z1zvi5.py&quot;, line 13, in parallel_sum
+    self._target(*self._args, **self._kwargs)
+    self.run()
+Traceback (most recent call last):
+  File &quot;/usr/lib/python3.12/threading.py&quot;, line 1073, in _bootstrap_inner
+  File &quot;/usr/lib/python3.12/threading.py&quot;, line 1010, in run
+  File &quot;/tmp/tmp46z1zvi5.py&quot;, line 13, in parallel_sum
+    return left.result + right.result
+    return left.result + right.result
+    self._target(*self._args, **self._kwargs)
+           ^^^^^^^^^^^
+           ^^^^^^^^^^^
+  File &quot;/tmp/tmp46z1zvi5.py&quot;, line 13, in parallel_sum
+AttributeError: &#39;Thread&#39; object has no attribute &#39;result&#39;
+AttributeError: &#39;Thread&#39; object has no attribute &#39;result&#39;
+    return left.result + right.result
+           ^^^^^^^^^^^
+AttributeError: &#39;Thread&#39; object has no attribute &#39;result&#39;
+Exception in thread Thread-8 (parallel_sum):
+Traceback (most recent call last):
+  File &quot;/usr/lib/python3.12/threading.py&quot;, line 1073, in _bootstrap_inner
+    self.run()
+  File &quot;/usr/lib/python3.12/threading.py&quot;, line 1010, in run
+    self.run()
+  File &quot;/usr/lib/python3.12/threading.py&quot;, line 1010, in run
+    self._target(*self._args, **self._kwargs)
+  File &quot;/tmp/tmp46z1zvi5.py&quot;, line 13, in parallel_sum
+    self._target(*self._args, **self._kwargs)
+  File &quot;/tmp/tmp46z1zvi5.py&quot;, line 13, in parallel_sum
+    return left.result + right.result
+           ^^^^^^^^^^^
+AttributeError: &#39;Thread&#39; object has no attribute &#39;result&#39;
+Exception in thread Thread-2 (parallel_sum):
+Traceback (most recent call last):
+  File &quot;/usr/lib/python3.12/threading.py&quot;, line 1073, in _bootstrap_inner
+    self.run()
+  File &quot;/usr/lib/python3.12/threading.py&quot;, line 1010, in run
+    self._target(*self._args, **self._kwargs)
+  File &quot;/tmp/tmp46z1zvi5.py&quot;, line 13, in parallel_sum
+    return left.result + right.result
+    return left.result + right.result
+           ^^^^^^^^^^^
+           ^^^^^^^^^^^
+AttributeError: &#39;Thread&#39; object has no attribute &#39;result&#39;
+AttributeError: &#39;Thread&#39; object has no attribute &#39;result&#39;
+Exception in thread Thread-4 (parallel_sum):
+Traceback (most recent call last):
+  File &quot;/usr/lib/python3.12/threading.py&quot;, line 1073, in _bootstrap_inner
+    self.run()
+  File &quot;/usr/lib/python3.12/threading.py&quot;, line 1010, in run
+    self._target(*self._args, **self._kwargs)
+  File &quot;/tmp/tmp46z1zvi5.py&quot;, line 13, in parallel_sum
+    return left.result + right.result
+           ^^^^^^^^^^^
+AttributeError: &#39;Thread&#39; object has no attribute &#39;result&#39;
+Exception in thread Thread-1 (parallel_sum):
+Traceback (most recent call last):
+  File &quot;/usr/lib/python3.12/threading.py&quot;, line 1073, in _bootstrap_inner
+    self.run()
+  File &quot;/usr/lib/python3.12/threading.py&quot;, line 1010, in run
+    self._target(*self._args, **self._kwargs)
+  File &quot;/tmp/tmp46z1zvi5.py&quot;, line 13, in parallel_sum
+    return left.result + right.result
+           ^^^^^^^^^^^
+AttributeError: &#39;Thread&#39; object has no attribute &#39;result&#39;
+ERROR: &#39;Thread&#39; object has no attribute &#39;result&#39;</pre></div>
+                    </div>
+                    <div class="border rounded p-2 text-xs border-red-300 bg-red-50">
+                      <div class="flex items-center gap-2">
+                        <span class="font-bold text-red-600">✗ Test 2</span>
+                        <span class="text-slate-500">Input: <code class="bg-white px-1 rounded">[10, 20, 30]</code></span>
+                      </div>
+                      <div class="mt-1 grid grid-cols-2 gap-2">
+                        <div><span class="text-slate-500">Expected:</span><pre class="bg-white rounded p-1 mt-0.5">60</pre></div>
+                        <div><span class="text-slate-500">Actual:</span><pre class="bg-white rounded p-1 mt-0.5"><em class="text-slate-400">no output</em></pre></div>
+                      </div>
+                      <div class="mt-1"><span class="text-xs text-slate-500">stderr:</span><pre class="text-xs text-red-700 bg-red-50 rounded p-1 mt-0.5">Runtime error: Exception in thread Thread-2 (parallel_sum):
+Traceback (most recent call last):
+  File &quot;/usr/lib/python3.12/threading.py&quot;, line 1073, in _bootstrap_inner
+    self.run()
+  File &quot;/usr/lib/python3.12/threading.py&quot;, line 1010, in run
+    self._target(*self._args, **self._kwargs)
+  File &quot;/tmp/tmpve8o6sbx.py&quot;, line 13, in parallel_sum
+    return left.result + right.result
+           ^^^^^^^^^^^
+AttributeError: &#39;Thread&#39; object has no attribute &#39;result&#39;
+ERROR: &#39;Thread&#39; object has no attribute &#39;result&#39;</pre></div>
+                    </div>
+                    <div class="border rounded p-2 text-xs border-red-300 bg-red-50">
+                      <div class="flex items-center gap-2">
+                        <span class="font-bold text-red-600">✗ Test 3</span>
+                        <span class="text-slate-500">Input: <code class="bg-white px-1 rounded">[0, 0, 0]</code></span>
+                      </div>
+                      <div class="mt-1 grid grid-cols-2 gap-2">
+                        <div><span class="text-slate-500">Expected:</span><pre class="bg-white rounded p-1 mt-0.5">0</pre></div>
+                        <div><span class="text-slate-500">Actual:</span><pre class="bg-white rounded p-1 mt-0.5"><em class="text-slate-400">no output</em></pre></div>
+                      </div>
+                      <div class="mt-1"><span class="text-xs text-slate-500">stderr:</span><pre class="text-xs text-red-700 bg-red-50 rounded p-1 mt-0.5">Runtime error: Exception in thread Thread-2 (parallel_sum):
+Traceback (most recent call last):
+  File &quot;/usr/lib/python3.12/threading.py&quot;, line 1073, in _bootstrap_inner
+    self.run()
+  File &quot;/usr/lib/python3.12/threading.py&quot;, line 1010, in run
+    self._target(*self._args, **self._kwargs)
+  File &quot;/tmp/tmp4s_qjyao.py&quot;, line 13, in parallel_sum
+    return left.result + right.result
+           ^^^^^^^^^^^
+AttributeError: &#39;Thread&#39; object has no attribute &#39;result&#39;
+ERROR: &#39;Thread&#39; object has no attribute &#39;result&#39;</pre></div>
+                    </div></div></div>
+                </div>
+              </td>
+            </tr>
+        <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
+          <td class="px-4 py-3 text-sm font-medium text-slate-700">StarCoder2-15B</td>
+          <td class="px-4 py-3 text-sm">Debug Buggy Sort<button onclick="toggleDetail('detail_47')" class="ml-2 text-xs text-blue-600 hover:text-blue-800 underline">details</button></td>
+          <td class="px-4 py-3 text-xs text-slate-500">Debugging</td>
+          <td class="px-4 py-3 text-xs"><span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">medium</span></td>
+          <td class="px-4 py-3 text-center font-mono font-semibold text-red-700">0</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">199</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">5.0</td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">✓ Valid</span></td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-800">✗ Fail</span></td>
+        </tr>
+        
+            <tr id="detail_47" class="hidden bg-slate-50">
+              <td colspan="9" class="px-6 py-4">
+                <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+                  <h4 class="text-sm font-semibold text-slate-700 mb-2">📋 Extracted Code</h4>
+                  <pre class="bg-slate-900 text-green-300 rounded-lg p-3 text-xs overflow-x-auto whitespace-pre-wrap mt-2"></pre>
+                  
+                  <div class="mt-3"><span class="text-xs font-semibold text-slate-600">Test Case Results:</span><div class="mt-1 space-y-2">
+                    <div class="border rounded p-2 text-xs border-red-300 bg-red-50">
+                      <div class="flex items-center gap-2">
+                        <span class="font-bold text-red-600">✗ Test 1</span>
+                        <span class="text-slate-500">Input: <code class="bg-white px-1 rounded">[64, 34, 25, 12, 22, 11, 90]</code></span>
+                      </div>
+                      <div class="mt-1 grid grid-cols-2 gap-2">
+                        <div><span class="text-slate-500">Expected:</span><pre class="bg-white rounded p-1 mt-0.5">[11, 12, 22, 25, 34, 64, 90]</pre></div>
+                        <div><span class="text-slate-500">Actual:</span><pre class="bg-white rounded p-1 mt-0.5"><em class="text-slate-400">no output</em></pre></div>
+                      </div>
+                      <div class="mt-1"><span class="text-xs text-slate-500">stderr:</span><pre class="text-xs text-red-700 bg-red-50 rounded p-1 mt-0.5">Runtime error: ERROR: name &#39;bubble_sort&#39; is not defined</pre></div>
+                    </div>
+                    <div class="border rounded p-2 text-xs border-red-300 bg-red-50">
+                      <div class="flex items-center gap-2">
+                        <span class="font-bold text-red-600">✗ Test 2</span>
+                        <span class="text-slate-500">Input: <code class="bg-white px-1 rounded">[5, 1, 4, 2, 8]</code></span>
+                      </div>
+                      <div class="mt-1 grid grid-cols-2 gap-2">
+                        <div><span class="text-slate-500">Expected:</span><pre class="bg-white rounded p-1 mt-0.5">[1, 2, 4, 5, 8]</pre></div>
+                        <div><span class="text-slate-500">Actual:</span><pre class="bg-white rounded p-1 mt-0.5"><em class="text-slate-400">no output</em></pre></div>
+                      </div>
+                      <div class="mt-1"><span class="text-xs text-slate-500">stderr:</span><pre class="text-xs text-red-700 bg-red-50 rounded p-1 mt-0.5">Runtime error: ERROR: name &#39;bubble_sort&#39; is not defined</pre></div>
+                    </div>
+                    <div class="border rounded p-2 text-xs border-red-300 bg-red-50">
+                      <div class="flex items-center gap-2">
+                        <span class="font-bold text-red-600">✗ Test 3</span>
+                        <span class="text-slate-500">Input: <code class="bg-white px-1 rounded">[1]</code></span>
+                      </div>
+                      <div class="mt-1 grid grid-cols-2 gap-2">
+                        <div><span class="text-slate-500">Expected:</span><pre class="bg-white rounded p-1 mt-0.5">[1]</pre></div>
+                        <div><span class="text-slate-500">Actual:</span><pre class="bg-white rounded p-1 mt-0.5"><em class="text-slate-400">no output</em></pre></div>
+                      </div>
+                      <div class="mt-1"><span class="text-xs text-slate-500">stderr:</span><pre class="text-xs text-red-700 bg-red-50 rounded p-1 mt-0.5">Runtime error: ERROR: name &#39;bubble_sort&#39; is not defined</pre></div>
+                    </div>
+                    <div class="border rounded p-2 text-xs border-red-300 bg-red-50">
+                      <div class="flex items-center gap-2">
+                        <span class="font-bold text-red-600">✗ Test 4</span>
+                        <span class="text-slate-500">Input: <code class="bg-white px-1 rounded">[]</code></span>
+                      </div>
+                      <div class="mt-1 grid grid-cols-2 gap-2">
+                        <div><span class="text-slate-500">Expected:</span><pre class="bg-white rounded p-1 mt-0.5">[]</pre></div>
+                        <div><span class="text-slate-500">Actual:</span><pre class="bg-white rounded p-1 mt-0.5"><em class="text-slate-400">no output</em></pre></div>
+                      </div>
+                      <div class="mt-1"><span class="text-xs text-slate-500">stderr:</span><pre class="text-xs text-red-700 bg-red-50 rounded p-1 mt-0.5">Runtime error: ERROR: name &#39;bubble_sort&#39; is not defined</pre></div>
+                    </div></div></div>
+                </div>
+              </td>
+            </tr>
+        <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
+          <td class="px-4 py-3 text-sm font-medium text-slate-700">StarCoder2-15B</td>
+          <td class="px-4 py-3 text-sm">SQL Query Builder<button onclick="toggleDetail('detail_48')" class="ml-2 text-xs text-blue-600 hover:text-blue-800 underline">details</button></td>
+          <td class="px-4 py-3 text-xs text-slate-500">SQL</td>
+          <td class="px-4 py-3 text-xs"><span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">medium</span></td>
+          <td class="px-4 py-3 text-center font-mono font-semibold text-red-700">0</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">196</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">5.1</td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">✓ Valid</span></td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-800">✗ Fail</span></td>
+        </tr>
+        
+            <tr id="detail_48" class="hidden bg-slate-50">
+              <td colspan="9" class="px-6 py-4">
+                <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+                  <h4 class="text-sm font-semibold text-slate-700 mb-2">📋 Extracted Code</h4>
+                  <pre class="bg-slate-900 text-green-300 rounded-lg p-3 text-xs overflow-x-auto whitespace-pre-wrap mt-2"></pre>
+                  
+                  <div class="mt-3"><span class="text-xs font-semibold text-slate-600">Test Case Results:</span><div class="mt-1 space-y-2">
+                    <div class="border rounded p-2 text-xs border-red-300 bg-red-50">
+                      <div class="flex items-center gap-2">
+                        <span class="font-bold text-red-600">✗ Test 1</span>
+                        <span class="text-slate-500">Input: <code class="bg-white px-1 rounded">&#39;users&#39;, [&#39;id&#39;, &#39;name&#39;], &#39;age &gt; 18&#39;</code></span>
+                      </div>
+                      <div class="mt-1 grid grid-cols-2 gap-2">
+                        <div><span class="text-slate-500">Expected:</span><pre class="bg-white rounded p-1 mt-0.5">&#39;SELECT id, name FROM users WHERE age &gt; 18&#39;</pre></div>
+                        <div><span class="text-slate-500">Actual:</span><pre class="bg-white rounded p-1 mt-0.5"><em class="text-slate-400">no output</em></pre></div>
+                      </div>
+                      <div class="mt-1"><span class="text-xs text-slate-500">stderr:</span><pre class="text-xs text-red-700 bg-red-50 rounded p-1 mt-0.5">Runtime error: ERROR: name &#39;build_select_query&#39; is not defined</pre></div>
+                    </div>
+                    <div class="border rounded p-2 text-xs border-red-300 bg-red-50">
+                      <div class="flex items-center gap-2">
+                        <span class="font-bold text-red-600">✗ Test 2</span>
+                        <span class="text-slate-500">Input: <code class="bg-white px-1 rounded">&#39;products&#39;, [], None</code></span>
+                      </div>
+                      <div class="mt-1 grid grid-cols-2 gap-2">
+                        <div><span class="text-slate-500">Expected:</span><pre class="bg-white rounded p-1 mt-0.5">&#39;SELECT * FROM products&#39;</pre></div>
+                        <div><span class="text-slate-500">Actual:</span><pre class="bg-white rounded p-1 mt-0.5"><em class="text-slate-400">no output</em></pre></div>
+                      </div>
+                      <div class="mt-1"><span class="text-xs text-slate-500">stderr:</span><pre class="text-xs text-red-700 bg-red-50 rounded p-1 mt-0.5">Runtime error: ERROR: name &#39;build_select_query&#39; is not defined</pre></div>
+                    </div>
+                    <div class="border rounded p-2 text-xs border-red-300 bg-red-50">
+                      <div class="flex items-center gap-2">
+                        <span class="font-bold text-red-600">✗ Test 3</span>
+                        <span class="text-slate-500">Input: <code class="bg-white px-1 rounded">&#39;orders&#39;, [&#39;order_id&#39;, &#39;total&#39;], None</code></span>
+                      </div>
+                      <div class="mt-1 grid grid-cols-2 gap-2">
+                        <div><span class="text-slate-500">Expected:</span><pre class="bg-white rounded p-1 mt-0.5">&#39;SELECT order_id, total FROM orders&#39;</pre></div>
+                        <div><span class="text-slate-500">Actual:</span><pre class="bg-white rounded p-1 mt-0.5"><em class="text-slate-400">no output</em></pre></div>
+                      </div>
+                      <div class="mt-1"><span class="text-xs text-slate-500">stderr:</span><pre class="text-xs text-red-700 bg-red-50 rounded p-1 mt-0.5">Runtime error: ERROR: name &#39;build_select_query&#39; is not defined</pre></div>
+                    </div></div></div>
+                </div>
+              </td>
+            </tr>
+        <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
+          <td class="px-4 py-3 text-sm font-medium text-slate-700">StarCoder2-15B</td>
+          <td class="px-4 py-3 text-sm">REST API URL Parser<button onclick="toggleDetail('detail_49')" class="ml-2 text-xs text-blue-600 hover:text-blue-800 underline">details</button></td>
+          <td class="px-4 py-3 text-xs text-slate-500">API Design</td>
+          <td class="px-4 py-3 text-xs"><span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">medium</span></td>
+          <td class="px-4 py-3 text-center font-mono font-semibold text-red-700">0</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">217</td>
+          <td class="px-4 py-3 text-center font-mono text-sm">9.2</td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">✓ Valid</span></td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-800">✗ Fail</span></td>
+        </tr>
+        
+            <tr id="detail_49" class="hidden bg-slate-50">
+              <td colspan="9" class="px-6 py-4">
+                <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+                  <h4 class="text-sm font-semibold text-slate-700 mb-2">📋 Extracted Code</h4>
+                  <pre class="bg-slate-900 text-green-300 rounded-lg p-3 text-xs overflow-x-auto whitespace-pre-wrap mt-2"></pre>
+                  
+                  <div class="mt-3"><span class="text-xs font-semibold text-slate-600">Test Case Results:</span><div class="mt-1 space-y-2">
+                    <div class="border rounded p-2 text-xs border-red-300 bg-red-50">
+                      <div class="flex items-center gap-2">
+                        <span class="font-bold text-red-600">✗ Test 1</span>
+                        <span class="text-slate-500">Input: <code class="bg-white px-1 rounded">&#39;https://api.example.com/v1/users?page=1&amp;limit=10&#39;</code></span>
+                      </div>
+                      <div class="mt-1 grid grid-cols-2 gap-2">
+                        <div><span class="text-slate-500">Expected:</span><pre class="bg-white rounded p-1 mt-0.5">{&#39;scheme&#39;: &#39;https&#39;, &#39;host&#39;: &#39;api.example.com&#39;, &#39;path&#39;: &#39;/v1/users&#39;, &#39;query_params&#39;: {&#39;page&#39;: &#39;1&#39;, &#39;limit&#39;: &#39;10&#39;}}</pre></div>
+                        <div><span class="text-slate-500">Actual:</span><pre class="bg-white rounded p-1 mt-0.5"><em class="text-slate-400">no output</em></pre></div>
+                      </div>
+                      <div class="mt-1"><span class="text-xs text-slate-500">stderr:</span><pre class="text-xs text-red-700 bg-red-50 rounded p-1 mt-0.5">Runtime error: ERROR: name &#39;parse_api_url&#39; is not defined</pre></div>
+                    </div>
+                    <div class="border rounded p-2 text-xs border-red-300 bg-red-50">
+                      <div class="flex items-center gap-2">
+                        <span class="font-bold text-red-600">✗ Test 2</span>
+                        <span class="text-slate-500">Input: <code class="bg-white px-1 rounded">&#39;http://localhost:8080/health&#39;</code></span>
+                      </div>
+                      <div class="mt-1 grid grid-cols-2 gap-2">
+                        <div><span class="text-slate-500">Expected:</span><pre class="bg-white rounded p-1 mt-0.5">{&#39;scheme&#39;: &#39;http&#39;, &#39;host&#39;: &#39;localhost:8080&#39;, &#39;path&#39;: &#39;/health&#39;, &#39;query_params&#39;: {}}</pre></div>
+                        <div><span class="text-slate-500">Actual:</span><pre class="bg-white rounded p-1 mt-0.5"><em class="text-slate-400">no output</em></pre></div>
+                      </div>
+                      <div class="mt-1"><span class="text-xs text-slate-500">stderr:</span><pre class="text-xs text-red-700 bg-red-50 rounded p-1 mt-0.5">Runtime error: ERROR: name &#39;parse_api_url&#39; is not defined</pre></div>
+                    </div></div></div>
+                </div>
+              </td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+</main>
+
+<footer class="mt-16 border-t border-slate-200 bg-white py-6 text-center text-xs text-slate-400">
+  Generated by OmniCoder Benchmark Harness &nbsp;·&nbsp; 2026-03-18 10:51 UTC
+</footer>
+
+<script>
+  // ── Render Plotly charts ──
+  var fig1 = {"data":[{"marker":{"color":"#f97316","line":{"color":"white","width":2},"size":22},"mode":"markers+text","name":"OmniCoder-9B","text":["OmniCoder-9B"],"textposition":"top center","x":[28841.8],"y":[75.0],"type":"scatter"},{"marker":{"color":"#3b82f6","line":{"color":"white","width":2},"size":14},"mode":"markers+text","name":"DeepSeek-Coder-V2-16B","text":["DeepSeek-Coder-V2-16B"],"textposition":"top center","x":[0.0],"y":[0.0],"type":"scatter"},{"marker":{"color":"#3b82f6","line":{"color":"white","width":2},"size":14},"mode":"markers+text","name":"Llama3.1-8B","text":["Llama3.1-8B"],"textposition":"top center","x":[3049.8],"y":[95.0],"type":"scatter"},{"marker":{"color":"#3b82f6","line":{"color":"white","width":2},"size":14},"mode":"markers+text","name":"Qwen3-8B","text":["Qwen3-8B"],"textposition":"top center","x":[25678.6],"y":[85.0],"type":"scatter"},{"marker":{"color":"#3b82f6","line":{"color":"white","width":2},"size":14},"mode":"markers+text","name":"StarCoder2-15B","text":["StarCoder2-15B"],"textposition":"top center","x":[3591.7],"y":[20.0],"type":"scatter"}],"layout":{"template":{"data":{"barpolar":[{"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scattermap":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermap"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"white","showlakes":true,"showland":true,"subunitcolor":"#C8D4E3"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"paper_bgcolor":"white","plot_bgcolor":"white","polar":{"angularaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""},"bgcolor":"white","radialaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"yaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"zaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"ternary":{"aaxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"baxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"bgcolor":"white","caxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2}}},"title":{"font":{"size":16},"text":"Accuracy vs Speed"},"yaxis":{"title":{"text":"Avg Correctness Score"},"range":[0,110]},"margin":{"l":50,"r":30,"t":60,"b":50},"legend":{"orientation":"h","yanchor":"bottom","y":-0.25},"xaxis":{"title":{"text":"Average Latency (ms)"}},"height":460}};
+  var fig2 = {"data":[{"marker":{"color":["#f97316","#3b82f6","#3b82f6","#3b82f6","#3b82f6"]},"text":["65.4","0.0","59.0","88.2","22.8"],"textposition":"outside","x":["OmniCoder-9B","DeepSeek-Coder-V2-16B","Llama3.1-8B","Qwen3-8B","StarCoder2-15B"],"y":{"dtype":"f8","bdata":"mpmZmZlZUEAAAAAAAAAAAAAAAAAAgE1AzczMzMwMVkDNzMzMzMw2QA=="},"type":"bar"}],"layout":{"template":{"data":{"barpolar":[{"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scattermap":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermap"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"white","showlakes":true,"showland":true,"subunitcolor":"#C8D4E3"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"paper_bgcolor":"white","plot_bgcolor":"white","polar":{"angularaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""},"bgcolor":"white","radialaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"yaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"zaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"ternary":{"aaxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"baxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"bgcolor":"white","caxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2}}},"title":{"font":{"size":16},"text":"Tokens Per Second"},"margin":{"l":50,"r":30,"t":60,"b":50},"xaxis":{"title":{"text":"Model"}},"yaxis":{"title":{"text":"Tokens \u002f Second"}},"height":400}};
+  var fig3 = {"data":[{"marker":{"color":["#f97316","#3b82f6","#3b82f6","#3b82f6","#3b82f6"]},"text":["75.0","0.0","95.0","85.0","20.0"],"textposition":"outside","x":["OmniCoder-9B","DeepSeek-Coder-V2-16B","Llama3.1-8B","Qwen3-8B","StarCoder2-15B"],"y":{"dtype":"f8","bdata":"AAAAAADAUkAAAAAAAAAAAAAAAAAAwFdAAAAAAABAVUAAAAAAAAA0QA=="},"type":"bar"}],"layout":{"template":{"data":{"barpolar":[{"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scattermap":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermap"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"white","showlakes":true,"showland":true,"subunitcolor":"#C8D4E3"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"paper_bgcolor":"white","plot_bgcolor":"white","polar":{"angularaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""},"bgcolor":"white","radialaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"yaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"zaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"ternary":{"aaxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"baxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"bgcolor":"white","caxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2}}},"title":{"font":{"size":16},"text":"Average Correctness Score"},"yaxis":{"title":{"text":"Score (0–100)"},"range":[0,115]},"margin":{"l":50,"r":30,"t":60,"b":50},"xaxis":{"title":{"text":"Model"}},"height":400}};
+  var fig4 = {"data":[{"marker":{"color":["#f97316","#3b82f6","#3b82f6","#3b82f6","#3b82f6"]},"text":["70.0%","0.0%","90.0%","80.0%","20.0%"],"textposition":"outside","x":["OmniCoder-9B","DeepSeek-Coder-V2-16B","Llama3.1-8B","Qwen3-8B","StarCoder2-15B"],"y":{"dtype":"f8","bdata":"AAAAAACAUUAAAAAAAAAAAAAAAAAAgFZAAAAAAAAAVEAAAAAAAAA0QA=="},"type":"bar"}],"layout":{"template":{"data":{"barpolar":[{"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scattermap":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermap"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"white","showlakes":true,"showland":true,"subunitcolor":"#C8D4E3"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"paper_bgcolor":"white","plot_bgcolor":"white","polar":{"angularaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""},"bgcolor":"white","radialaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"yaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"zaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"ternary":{"aaxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"baxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"bgcolor":"white","caxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2}}},"title":{"font":{"size":16},"text":"Pass@1 Rate (%)"},"yaxis":{"title":{"text":"Pass@1 (%)"},"range":[0,120]},"margin":{"l":50,"r":30,"t":60,"b":50},"xaxis":{"title":{"text":"Model"}},"height":400}};
+  var fig5 = {"data":[{"colorscale":[[0.0,"rgb(165,0,38)"],[0.1,"rgb(215,48,39)"],[0.2,"rgb(244,109,67)"],[0.3,"rgb(253,174,97)"],[0.4,"rgb(254,224,139)"],[0.5,"rgb(255,255,191)"],[0.6,"rgb(217,239,139)"],[0.7,"rgb(166,217,106)"],[0.8,"rgb(102,189,99)"],[0.9,"rgb(26,152,80)"],[1.0,"rgb(0,104,55)"]],"showscale":true,"text":[["0","0","0","0","0","0","0","0"],["50","100","100","100","100","100","100","100"],["50","100","0","100","100","100","100","50"],["50","100","100","100","100","0","100","100"],["0","50","0","0","0","0","0","50"]],"texttemplate":"%{text}","x":["API Design","Algorithm","Concurrency","Data Structures","Debugging","File I\u002fO","SQL","String Manipulation"],"y":["DeepSeek-Coder-V2-16B","Llama3.1-8B","OmniCoder-9B","Qwen3-8B","StarCoder2-15B"],"z":{"dtype":"f8","bdata":"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAElAAAAAAAAAWUAAAAAAAABZQAAAAAAAAFlAAAAAAAAAWUAAAAAAAABZQAAAAAAAAFlAAAAAAAAAWUAAAAAAAABJQAAAAAAAAFlAAAAAAAAAAAAAAAAAAABZQAAAAAAAAFlAAAAAAAAAWUAAAAAAAABZQAAAAAAAAElAAAAAAAAASUAAAAAAAABZQAAAAAAAAFlAAAAAAAAAWUAAAAAAAABZQAAAAAAAAAAAAAAAAAAAWUAAAAAAAABZQAAAAAAAAAAAAAAAAAAASUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAASUA=","shape":"5, 8"},"zmax":100,"zmin":0,"type":"heatmap"}],"layout":{"template":{"data":{"barpolar":[{"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scattermap":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermap"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"white","showlakes":true,"showland":true,"subunitcolor":"#C8D4E3"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"paper_bgcolor":"white","plot_bgcolor":"white","polar":{"angularaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""},"bgcolor":"white","radialaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"yaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"zaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"ternary":{"aaxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"baxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"bgcolor":"white","caxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2}}},"title":{"font":{"size":16},"text":"Correctness by Model × Category"},"margin":{"l":160,"r":30,"t":60,"b":80},"xaxis":{"title":{"text":"Category"}},"yaxis":{"title":{"text":"Model"}},"height":380}};
+
+  var cfg = {responsive: true, displayModeBar: false};
+  Plotly.newPlot('chart1', fig1.data, fig1.layout, cfg);
+  Plotly.newPlot('chart2', fig2.data, fig2.layout, cfg);
+  Plotly.newPlot('chart3', fig3.data, fig3.layout, cfg);
+  Plotly.newPlot('chart4', fig4.data, fig4.layout, cfg);
+  Plotly.newPlot('chart5', fig5.data, fig5.layout, cfg);
+
+  // ── Toggle expandable detail rows ──
+  function toggleDetail(id) {
+    var el = document.getElementById(id);
+    if (el) {
+      el.classList.toggle('hidden');
+    }
+  }
+</script>
+</body>
+</html>

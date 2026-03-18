@@ -1,0 +1,32 @@
+models:
+  - name: "carstenuhlig/omnicoder-9b:latest"
+    display_name: "OmniCoder-9B"
+    is_primary: true
+  - name: "qwen3:8b"
+    display_name: "Qwen3-8B"
+    is_primary: false
+  - name: "llama3.1:8b"
+    display_name: "Llama3.1-8B"
+    is_primary: false
+  - name: "deepseek-coder-v2:16b"
+    display_name: "DeepSeek-Coder-V2-16B"
+    is_primary: false
+  - name: "starcoder2:15b"
+    display_name: "StarCoder2-15B"
+    is_primary: false
+
+ollama:
+  base_url: "http://localhost:11434"
+  timeout: 120
+  stream: true
+
+benchmark:
+  tasks_dir: "./tasks"
+  results_dir: "./results"
+  cache_file: "./results/llm_cache.json"
+  execution_timeout: 10
+  max_retries: 1
+
+report:
+  output_file: "./results/report.html"
+  title: "OmniCoder-9B vs Competitors: Coding LLM Benchmark"

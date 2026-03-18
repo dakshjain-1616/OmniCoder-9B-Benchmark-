@@ -1,0 +1,15 @@
+{
+  "id": "task_08",
+  "name": "Debug Buggy Sort",
+  "difficulty": "medium",
+  "category": "Debugging",
+  "prompt": "The following Python function is supposed to sort a list using bubble sort but has bugs. Fix it and write a correct function called `bubble_sort(arr)` that returns a sorted list (ascending). Buggy code: def bubble_sort(arr):\n    n = len(arr)\n    for i in range(n):\n        for j in range(n-i):\n            if arr[j] > arr[j+1]:\n                arr[j], arr[j+1] = arr[j+1], arr[j]\n    return arr\nOnly output the corrected function definition, no extra explanation.",
+  "test_cases": [
+    {"input": "[64, 34, 25, 12, 22, 11, 90]", "expected_output": "[11, 12, 22, 25, 34, 64, 90]"},
+    {"input": "[5, 1, 4, 2, 8]", "expected_output": "[1, 2, 4, 5, 8]"},
+    {"input": "[1]", "expected_output": "[1]"},
+    {"input": "[]", "expected_output": "[]"}
+  ],
+  "evaluation_type": "execution",
+  "entry_point": "bubble_sort"
+}

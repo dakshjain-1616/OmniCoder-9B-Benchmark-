@@ -1,0 +1,14 @@
+{
+  "id": "task_05",
+  "name": "Word Frequency Count",
+  "difficulty": "easy",
+  "category": "String Manipulation",
+  "prompt": "Write a Python function called `word_count(text)` that returns a dictionary with each word (lowercased) as key and its frequency as value. Words are separated by spaces. Only output the function definition, no extra explanation.",
+  "test_cases": [
+    {"input": "\"hello world hello\"", "expected_output": "{'hello': 2, 'world': 1}"},
+    {"input": "\"the cat sat on the mat\"", "expected_output": "{'the': 2, 'cat': 1, 'sat': 1, 'on': 1, 'mat': 1}"},
+    {"input": "\"one\"", "expected_output": "{'one': 1}"}
+  ],
+  "evaluation_type": "execution",
+  "entry_point": "word_count"
+}

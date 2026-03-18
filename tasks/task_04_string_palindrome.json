@@ -1,0 +1,15 @@
+{
+  "id": "task_04",
+  "name": "String Palindrome Check",
+  "difficulty": "easy",
+  "category": "String Manipulation",
+  "prompt": "Write a Python function called `is_palindrome(s)` that returns True if the string s is a palindrome (ignoring case and non-alphanumeric characters), False otherwise. Only output the function definition, no extra explanation.",
+  "test_cases": [
+    {"input": "\"racecar\"", "expected_output": "True"},
+    {"input": "\"A man a plan a canal Panama\"", "expected_output": "True"},
+    {"input": "\"hello\"", "expected_output": "False"},
+    {"input": "\"\"", "expected_output": "True"}
+  ],
+  "evaluation_type": "execution",
+  "entry_point": "is_palindrome"
+}

@@ -1,0 +1,12 @@
+{
+  "id": "task_06",
+  "name": "File Line Counter",
+  "difficulty": "easy",
+  "category": "File I/O",
+  "prompt": "Write a Python function called `count_lines(filename)` that reads a text file and returns the number of non-empty lines. If the file does not exist, return -1. Only output the function definition, no extra explanation.",
+  "test_cases": [
+    {"input": "\"nonexistent_file_xyz.txt\"", "expected_output": "-1"}
+  ],
+  "evaluation_type": "execution",
+  "entry_point": "count_lines"
+}

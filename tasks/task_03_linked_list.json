@@ -1,0 +1,15 @@
+{
+  "id": "task_03",
+  "name": "Linked List Reverse",
+  "difficulty": "medium",
+  "category": "Data Structures",
+  "prompt": "Write a Python function called `reverse_list(lst)` that takes a Python list and returns a new list with elements in reverse order. Do NOT use slicing or built-in reverse. Only output the function definition, no extra explanation.",
+  "test_cases": [
+    {"input": "[1, 2, 3, 4, 5]", "expected_output": "[5, 4, 3, 2, 1]"},
+    {"input": "[10, 20]", "expected_output": "[20, 10]"},
+    {"input": "[42]", "expected_output": "[42]"},
+    {"input": "[]", "expected_output": "[]"}
+  ],
+  "evaluation_type": "execution",
+  "entry_point": "reverse_list"
+}

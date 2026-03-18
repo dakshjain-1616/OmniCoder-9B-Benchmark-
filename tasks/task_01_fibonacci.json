@@ -1,0 +1,15 @@
+{
+  "id": "task_01",
+  "name": "Fibonacci Sequence",
+  "difficulty": "easy",
+  "category": "Algorithm",
+  "prompt": "Write a Python function called `fibonacci(n)` that returns the nth Fibonacci number (0-indexed). fibonacci(0)=0, fibonacci(1)=1, fibonacci(2)=1, fibonacci(3)=2, etc. Only output the function definition, no extra explanation.",
+  "test_cases": [
+    {"input": "0", "expected_output": "0"},
+    {"input": "1", "expected_output": "1"},
+    {"input": "5", "expected_output": "5"},
+    {"input": "10", "expected_output": "55"}
+  ],
+  "evaluation_type": "execution",
+  "entry_point": "fibonacci"
+}

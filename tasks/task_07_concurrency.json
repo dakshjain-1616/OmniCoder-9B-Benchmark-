@@ -1,0 +1,14 @@
+{
+  "id": "task_07",
+  "name": "Thread-Safe Counter",
+  "difficulty": "medium",
+  "category": "Concurrency",
+  "prompt": "Write a Python function called `parallel_sum(numbers)` that takes a list of numbers and returns their sum using threading (at least 2 threads). Only output the function definition with any necessary imports, no extra explanation.",
+  "test_cases": [
+    {"input": "[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]", "expected_output": "55"},
+    {"input": "[10, 20, 30]", "expected_output": "60"},
+    {"input": "[0, 0, 0]", "expected_output": "0"}
+  ],
+  "evaluation_type": "execution",
+  "entry_point": "parallel_sum"
+}

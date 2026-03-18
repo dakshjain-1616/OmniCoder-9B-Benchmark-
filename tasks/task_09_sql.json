@@ -1,0 +1,14 @@
+{
+  "id": "task_09",
+  "name": "SQL Query Builder",
+  "difficulty": "medium",
+  "category": "SQL",
+  "prompt": "Write a Python function called `build_select_query(table, columns, condition)` that builds a SQL SELECT query string. `table` is a string (table name), `columns` is a list of column names (use '*' if empty list), and `condition` is an optional string for WHERE clause (None if no condition). Return the SQL string. Only output the function definition, no extra explanation.\nExamples:\n- build_select_query('users', ['id', 'name'], 'age > 18') -> \"SELECT id, name FROM users WHERE age > 18\"\n- build_select_query('products', [], None) -> \"SELECT * FROM products\"",
+  "test_cases": [
+    {"input": "'users', ['id', 'name'], 'age > 18'", "expected_output": "'SELECT id, name FROM users WHERE age > 18'"},
+    {"input": "'products', [], None", "expected_output": "'SELECT * FROM products'"},
+    {"input": "'orders', ['order_id', 'total'], None", "expected_output": "'SELECT order_id, total FROM orders'"}
+  ],
+  "evaluation_type": "execution",
+  "entry_point": "build_select_query"
+}

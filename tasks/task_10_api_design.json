@@ -1,0 +1,13 @@
+{
+  "id": "task_10",
+  "name": "REST API URL Parser",
+  "difficulty": "medium",
+  "category": "API Design",
+  "prompt": "Write a Python function called `parse_api_url(url)` that parses a REST API URL and returns a dictionary with keys: 'scheme', 'host', 'path', 'query_params'. The 'query_params' value should be a dictionary of key-value pairs from the query string. Use only the standard library (urllib.parse). Only output the function definition with necessary imports, no extra explanation.\nExample: parse_api_url('https://api.example.com/v1/users?page=1&limit=10') -> {'scheme': 'https', 'host': 'api.example.com', 'path': '/v1/users', 'query_params': {'page': '1', 'limit': '10'}}",
+  "test_cases": [
+    {"input": "'https://api.example.com/v1/users?page=1&limit=10'", "expected_output": "{'scheme': 'https', 'host': 'api.example.com', 'path': '/v1/users', 'query_params': {'page': '1', 'limit': '10'}}"},
+    {"input": "'http://localhost:8080/health'", "expected_output": "{'scheme': 'http', 'host': 'localhost:8080', 'path': '/health', 'query_params': {}}"}
+  ],
+  "evaluation_type": "execution",
+  "entry_point": "parse_api_url"
+}

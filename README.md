@@ -12,7 +12,7 @@
 | 🥈 **Qwen3-8B** | **85.0** | **80%** | 88.2 tok/s | 25.7 s | 100% |
 | 🥉 **OmniCoder-9B** | **75.0** | **70%** | 65.4 tok/s | 28.8 s | 100% |
 | 4️⃣ **StarCoder2-15B** | 20.0 | 20% | 22.8 tok/s | 3.6 s | 100% |
-| 5️⃣ **DeepSeek-Coder-V2-16B** | 0.0 | 0% | — | — | — |
+
 
 > **Note:** DeepSeek-Coder-V2-16B returned 500 errors on all tasks — the 16B model exceeds available VRAM on this machine. Qwen3-8B and OmniCoder-9B are both Qwen3-based reasoning models; their higher latency reflects chain-of-thought generation before code output. StarCoder2-15B scored higher than its 7B predecessor but still struggles with this prompt format.
 
